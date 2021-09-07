@@ -631,29 +631,32 @@ contract Vault is
             (uint128 liquidityBase, , , , ) = position(baseLower, baseUpper);
             if (liquidityBase > 0) {
                 pool.burn(baseLower, baseUpper, liquidityBase);
+                pool.collect(
+                    to,
+                    baseLower,
+                    baseUpper,
+                    type(uint128).max,
+                    type(uint128).max
+                );
             }
-            pool.collect(
-                to,
-                baseLower,
-                baseUpper,
-                type(uint128).max,
-                type(uint128).max
-            );
+
         }
 
         if (limitLower < limitUpper) {
             (uint128 liquidityLimit, , , , ) = position(limitLower, limitUpper);
             if (liquidityLimit > 0) {
                 pool.burn(limitLower, limitUpper, liquidityLimit);
+
+                pool.collect(
+                    to,
+                    limitLower,
+                    limitUpper,
+                    type(uint128).max,
+                    type(uint128).max
+                );
             }
 
-            pool.collect(
-                to,
-                limitLower,
-                limitUpper,
-                type(uint128).max,
-                type(uint128).max
-            );
+
         }
 
         uint256 token0Balance = getBalance0();
