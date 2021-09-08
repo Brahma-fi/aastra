@@ -16,6 +16,14 @@ interface IFactory {
         address indexed vaultAddress
     );
 
+    /// @notice Emitted when governance of protocol gets changes
+    /// @param oldGovernance Address of old governance 
+    /// @param newGovernance Address of new governance 
+    event GovernanceChange(
+        address indexed oldGovernance,
+        address indexed newGovernance
+    );
+
     /// @notice Returns manager address of a given vault address
     /// @param _vault Address of Aastra vault
     /// @return _manager Address of vault manager
