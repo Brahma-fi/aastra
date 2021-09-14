@@ -95,7 +95,7 @@ contract Factory is IFactory {
             msg.sender == pendingGovernance,
             "Factory : acceptGovernance :: you need to be pendingGovernance to accept governance"
         );
-        GovernanceChange(governance, msg.sender);
+        emit GovernanceChange(governance, msg.sender);
         governance = msg.sender;
     }
 
