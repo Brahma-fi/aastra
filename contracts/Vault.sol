@@ -786,13 +786,6 @@ contract Vault is
             );
     }
 
-    function updateStrategyFee(uint256 fee) external override onlyGovernance{
-        strategyFee = fee;
-    }
-
-    function updateProtocolFee(uint256 fee) external override onlyGovernance{
-        protocolFee = fee;
-    }
 
     /// @inheritdoc IVault
     function freezeStrategy(bool value) external override onlyGovernance {
