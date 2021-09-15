@@ -84,7 +84,8 @@ interface IRouter {
     function newLimitLiquidity(
         int24 _limitLower,
         int24 _limitUpper,
-        uint8 _percentage
+        uint8 _percentage,
+        bool swapEnabled
     ) external;
 
     /// @notice Used to collect and compound fee for a specific vault
