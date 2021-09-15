@@ -158,8 +158,8 @@ contract Vault is
             uint256 baseMintAmount0 = amount0.mul(baseAmount0).div(
                 totalAmount0
             );
-            uint256 baseMintAmount1 = amount0.mul(baseAmount1).div(
-                totalAmount0
+            uint256 baseMintAmount1 = amount1.mul(baseAmount1).div(
+                totalAmount1
             );
 
             uint256 limitMintAmount0 = amount0.mul(limitAmount0).div(
