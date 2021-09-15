@@ -10,7 +10,7 @@ const STRATEGY_MANAGER_ADDRESS = "0x0405d9d1443DFB051D5e8E231e41C911Dc8393a4";
 async function main() {
 
   const Factory = await hre.ethers.getContractFactory("Factory");
-  const factory = await Factory.deploy();
+  const factory = await Factory.deploy("0x140713bbD82113e104C3a45661134F9764807922");
 
   const accounts = await hre.ethers.getSigners();
 
@@ -42,7 +42,7 @@ async function main() {
     });
 
     await hre.run("verify:verify", {
-        address: periphery.address,
+        address: router.address,
         constructorArguments: [factory.address],
     });
 
