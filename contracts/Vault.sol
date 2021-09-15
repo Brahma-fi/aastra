@@ -154,8 +154,11 @@ contract Vault is
         );
         {
             (uint256 totalAmount0, uint256 totalAmount1) = getTotalAmounts();
-            uint256 baseMintAmount0, baseMintAmount1 ;
-            uint256 limitMintAmount0, limitMintAmount1 ;
+            
+            uint256 baseMintAmount0; 
+            uint256 baseMintAmount1 ;
+            uint256 limitMintAmount0;
+            uint256 limitMintAmount1 ;
             
             if (totalAmount0>0){
                 baseMintAmount0 = amount0.mul(baseAmount0).div(
