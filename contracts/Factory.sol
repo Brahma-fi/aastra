@@ -14,8 +14,8 @@ contract Factory is IFactory {
     address public override governance;
     address public override pendingGovernance;
 
-    constructor() {
-        governance = msg.sender;
+    constructor(address _governance) {
+        governance = _governance;
     }
 
     function createVault(
