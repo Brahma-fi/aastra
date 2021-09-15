@@ -5,7 +5,7 @@ const STRATEGY_MANAGER_ADDRESS = "0x0405d9d1443DFB051D5e8E231e41C911Dc8393a4";
 const GOVERNANCE_ADDRESS = "0x140713bbD82113e104C3a45661134F9764807922";
 
 async function main() {
-
+    const signers = await hre.ethers.getSigners();
     // deploy contracts
     const Factory = await hre.ethers.getContractFactory("Factory");
     const factory = await Factory.deploy(GOVERNANCE_ADDRESS);
@@ -19,9 +19,9 @@ async function main() {
     await tx.wait();
     console.log("Router deployed to:", router.address);
 
-    tx = await factory.createVault(POOL_ADDRESS, STRATEGY_MANAGER_ADDRESS, 5000, 7000, 0);
+    tx = await factory.createVault(POOL_ADDRESS, signers[0].address, 5000, 7000, 0);
     await tx.wait();
-    const vaultAddress = await factory.managerVault(STRATEGY_MANAGER_ADDRESS);
+    const vaultAddress = await factory.managerVault(signers[0].address);
     console.log("Vault deployed to:", vaultAddress);
 
     // make deposit
@@ -32,9 +32,10 @@ async function main() {
     console.log("approveal done");
     const vault = await hre.ethers.getContractAt("Vault", vaultAddress);
     await vault.deposit("3000000000000000000", "3000000000000000000", 0, 0, STRATEGY_MANAGER_ADDRESS);
+    const balances = await vault.getTotalAmounts();
+    console.log("balances", balances);
     console.log("deposit done");
-    let lower_tick, upper_tick = [17900, 21200];
-    await router.newLimitLiquidity(lower_tick, upper_tick, 100, true)
+    await router.connect(signers[0]).newLimitLiquidity(17900, 21200, 100, true);
 
 }
 
