@@ -154,20 +154,25 @@ contract Vault is
         );
         {
             (uint256 totalAmount0, uint256 totalAmount1) = getTotalAmounts();
-
-            uint256 baseMintAmount0 = amount0.mul(baseAmount0).div(
-                totalAmount0
-            );
-            uint256 baseMintAmount1 = amount1.mul(baseAmount1).div(
-                totalAmount1
-            );
-
-            uint256 limitMintAmount0 = amount0.mul(limitAmount0).div(
-                totalAmount0
-            );
-            uint256 limitMintAmount1 = amount1.mul(limitAmount1).div(
-                totalAmount1
-            );
+            uint256 baseMintAmount0, baseMintAmount1 ;
+            uint256 limitMintAmount0, limitMintAmount1 ;
+            
+            if (totalAmount0>0){
+                baseMintAmount0 = amount0.mul(baseAmount0).div(
+                    totalAmount0
+                );
+                limitMintAmount0 = amount0.mul(limitAmount0).div(
+                    totalAmount0
+                );
+            }
+            if (totalAmount1>0){
+                baseMintAmount1 = amount1.mul(baseAmount1).div(
+                    totalAmount1
+                );
+                limitMintAmount1 = amount1.mul(limitAmount1).div(
+                    totalAmount1
+                );
+            }
             // Mint tokens
             if (baseMintAmount0 > 0 || baseMintAmount1 > 0) {
                 uint128 baseLiquidity = _liquidityForAmounts(
