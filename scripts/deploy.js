@@ -60,11 +60,15 @@ async function main() {
   const token0 = await ethers.getContractAt("IERC20Metadata", token0Addr);
   const token1 = await ethers.getContractAt("IERC20Metadata", token1Addr);
 
+  var token0Bal;
+  var token1Bal;
+  var vaultBal;
+
   for (let i = 0; i < 2; i++) {
-    let token0Bal = await token0.balanceOf(signer._address);
-    let token1Bal = await token1.balanceOf(signer._address);
-    let vaultBal = await vault.balanceOf(signer._address);
-    let transactAmt = token0Bal.div(i == 1 ? 1 : 2);
+    token0Bal = await token0.balanceOf(signer._address);
+    token1Bal = await token1.balanceOf(signer._address);
+    vaultBal = await vault.balanceOf(signer._address);
+    transactAmt = token0Bal.div(i == 1 ? 1 : 2);
 
     console.log(
       "before call",
@@ -89,6 +93,20 @@ async function main() {
       vaultBal.toString()
     );
   }
+
+  await vault.connect(signer).approve(periphery.address, vaultBal);
+  await periphery.connect(signer).vaultWithdraw(vaultBal);
+
+  token0Bal = await token0.balanceOf(signer._address);
+  token1Bal = await token1.balanceOf(signer._address);
+  vaultBal = await vault.balanceOf(signer._address);
+
+  console.log(
+    "Token balance after withdraw",
+    token0Bal.toString(),
+    token1Bal.toString(),
+    vaultBal.toString()
+  );
 
   if (etherscan_verify) {
     await hre.run("verify:verify", {
