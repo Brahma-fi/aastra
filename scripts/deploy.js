@@ -1,3 +1,4 @@
+const { BigNumber } = require("@ethersproject/bignumber");
 const hre = require("hardhat");
 const { ethers } = require("hardhat");
 
@@ -59,30 +60,35 @@ async function main() {
   const token0 = await ethers.getContractAt("IERC20Metadata", token0Addr);
   const token1 = await ethers.getContractAt("IERC20Metadata", token1Addr);
 
-  let token0Bal = await token0.balanceOf(signer._address);
-  let token1Bal = await token1.balanceOf(signer._address);
-  let vaultBal = await vault.balanceOf(signer._address);
+  for (let i = 0; i < 2; i++) {
+    let token0Bal = await token0.balanceOf(signer._address);
+    let token1Bal = await token1.balanceOf(signer._address);
+    let vaultBal = await vault.balanceOf(signer._address);
+    let transactAmt = token0Bal.div(i == 1 ? 1 : 2);
 
-  console.log(
-    "Token balance before call",
-    token0Bal.toString(),
-    token1Bal.toString(),
-    vaultBal.toString()
-  );
+    console.log(
+      "before call",
+      token0Bal.toString(),
+      transactAmt.toString(),
+      token1Bal.toString(),
+      vaultBal.toString()
+    );
 
-  await token0.connect(signer).approve(periphery.address, token0Bal);
-  await periphery.connect(signer).vaultDeposit(token0Bal);
+    await token0.connect(signer).approve(periphery.address, transactAmt);
+    await periphery.connect(signer).vaultDeposit(transactAmt);
 
-  token0Bal = await token0.balanceOf(signer._address);
-  token1Bal = await token1.balanceOf(signer._address);
-  vaultBal = await vault.balanceOf(signer._address);
+    token0Bal = await token0.balanceOf(signer._address);
+    token1Bal = await token1.balanceOf(signer._address);
+    vaultBal = await vault.balanceOf(signer._address);
 
-  console.log(
-    "Token balance after call",
-    token0Bal.toString(),
-    token1Bal.toString(),
-    vaultBal.toString()
-  );
+    console.log(
+      "Token balance after call",
+      token0Bal.toString(),
+      transactAmt.toString(),
+      token1Bal.toString(),
+      vaultBal.toString()
+    );
+  }
 
   if (etherscan_verify) {
     await hre.run("verify:verify", {

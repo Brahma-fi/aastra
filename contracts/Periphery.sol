@@ -8,7 +8,6 @@ import '@uniswap/v3-periphery/contracts/interfaces/IQuoter.sol';
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
-import "hardhat/console.sol";
 
 import './interfaces/IVault.sol';
 import "./interfaces/IERC20Metadata.sol";
@@ -38,12 +37,19 @@ contract Periphery {
     /// @notice Calls IVault's deposit method and sends all money back to user after transactions
     /// @param amountIn Value of token0 to be deposited 
     function vaultDeposit(uint256 amountIn) external minimumAmount(amountIn) {
-        // (uint256 token0InVault, uint256 token1InVault) = vault.getTotalAmounts();
-        uint256 token0InVault = 2;
-        uint256 token1InVault = 4;
-        uint256 tokensRatio = token0InVault.mul(100).div(token1InVault);
-        uint256 amountToSwap = amountIn/2;
-        console.log("Ratio", tokensRatio);
+        // Calculate amount to swap based on tokens in vault
+        // token0 / token1 = k
+        // token0 + token1 = amountIn
+        uint256 amountToSwap;
+        (uint256 token0InVault, uint256 token1InVault) = vault.getTotalAmounts();
+        
+        if(token0InVault == 0 || token1InVault == 0) {
+            amountToSwap = amountIn/2;
+        } else {
+            uint256 tokensRatio = token1InVault.mul(100).div(token0InVault);
+            uint256 token0ToKeep = amountIn.mul(100*100).div(tokensRatio.add(1*100));
+            amountToSwap = (amountIn.mul(100) - token0ToKeep).div(100);
+        }
 
         // transfer token0 from sender to contract & approve router to spend it
         token0.safeTransferFrom(msg.sender, address(this), amountIn);
@@ -73,7 +79,7 @@ contract Periphery {
         token0.approve(address(vault), _tokenBalance(token0));
         token1.approve(address(vault), amountOut);
 
-        vault.deposit(amountToSwap, amountOut, 0, 0, msg.sender);
+        vault.deposit(_tokenBalance(token0), amountOut, 0, 0, msg.sender);
 
         // send balance of token1 & token0 to user
         token0.safeTransfer(msg.sender, _tokenBalance(token0));
