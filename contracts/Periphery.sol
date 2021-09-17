@@ -2,18 +2,20 @@
 pragma solidity >=0.7.5;
 pragma abicoder v2;
 
-import '@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol';
-import '@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol';
-import '@uniswap/v3-periphery/contracts/interfaces/IQuoter.sol';
+import "@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol";
+import "@uniswap/v3-periphery/contracts/libraries/TransferHelper.sol";
+import "@uniswap/v3-periphery/contracts/interfaces/IQuoter.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
-import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
-import './interfaces/IVault.sol';
+import "./interfaces/IPeriphery.sol";
+import "./interfaces/IVault.sol";
 import "./interfaces/IERC20Metadata.sol";
 import "./libraries/LongMath.sol";
 
-contract Periphery {
+/// @title Periphery
+contract Periphery is IPeriphery {
     using SafeMath for uint256;
     using LongMath for uint256;
     using SafeERC20 for IERC20Metadata;
@@ -34,9 +36,8 @@ contract Periphery {
         token1 = vault.token1();
     } 
 
-    /// @notice Calls IVault's deposit method and sends all money back to user after transactions
-    /// @param amountIn Value of token0 to be deposited 
-    function vaultDeposit(uint256 amountIn) external minimumAmount(amountIn) {
+    /// @inheritdoc IPeriphery
+    function vaultDeposit(uint256 amountIn) external override minimumAmount(amountIn) {
         // Calculate amount to swap based on tokens in vault
         // token0 / token1 = k
         // token0 + token1 = amountIn
@@ -86,7 +87,8 @@ contract Periphery {
         token1.safeTransfer(msg.sender, _tokenBalance(token1));
     }
 
-    function vaultWithdraw(uint256 shares) external minimumAmount(shares) {
+    /// @inheritdoc IPeriphery
+    function vaultWithdraw(uint256 shares) external override minimumAmount(shares) {
         // transfer shares from msg.sender & withdraw
         vault.safeTransferFrom(msg.sender, address(this), shares);
         (uint256 amount0, uint256 amount1) = vault.withdraw(shares, 0, 0, address(this));
@@ -118,6 +120,10 @@ contract Periphery {
         token1.safeTransfer(msg.sender, _tokenBalance(token1));
     }
 
+    /**
+      * @notice Get the balance of a token in contract
+      * @param token token whose balance needs to be returned
+     */
     function _tokenBalance(IERC20Metadata token) internal view returns (uint256) {
         return token.balanceOf(address(this));
     }
