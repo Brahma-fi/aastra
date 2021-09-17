@@ -1,19 +1,11 @@
-const { BigNumber } = require("@ethersproject/bignumber");
 const hre = require("hardhat");
-const { ethers } = require("hardhat");
 
-const etherscan_verify = false;
+const etherscan_verify = true;
 
 const POOL_ADDRESS = "0x2BFD0C3169A8C0Cd7B814D38533A0645368F0D80";
 const STRATEGY_MANAGER_ADDRESS = "0x0405d9d1443DFB051D5e8E231e41C911Dc8393a4";
-const IMPERSONATING_ACCOUNT = "0xE177DdEa55d5A724515AF1D909a36543cBC4d93E";
 
 async function main() {
-  await hre.network.provider.request({
-    method: "hardhat_impersonateAccount",
-    params: [IMPERSONATING_ACCOUNT]
-  });
-
   const Factory = await hre.ethers.getContractFactory("Factory");
   const factory = await Factory.deploy();
 
@@ -51,63 +43,6 @@ async function main() {
 
   console.log("Periphery deployed to:", periphery.address);
 
-  const signer = await ethers.provider.getSigner(IMPERSONATING_ACCOUNT);
-
-  const vault = await ethers.getContractAt("IVault", vaultAddress);
-  const token0Addr = await vault.token0();
-  const token1Addr = await vault.token1();
-
-  const token0 = await ethers.getContractAt("IERC20Metadata", token0Addr);
-  const token1 = await ethers.getContractAt("IERC20Metadata", token1Addr);
-
-  var token0Bal;
-  var token1Bal;
-  var vaultBal;
-
-  for (let i = 0; i < 2; i++) {
-    token0Bal = await token0.balanceOf(signer._address);
-    token1Bal = await token1.balanceOf(signer._address);
-    vaultBal = await vault.balanceOf(signer._address);
-    transactAmt = token0Bal.div(i == 1 ? 1 : 2);
-
-    console.log(
-      "before call",
-      token0Bal.toString(),
-      transactAmt.toString(),
-      token1Bal.toString(),
-      vaultBal.toString()
-    );
-
-    await token0.connect(signer).approve(periphery.address, transactAmt);
-    await periphery.connect(signer).vaultDeposit(transactAmt);
-
-    token0Bal = await token0.balanceOf(signer._address);
-    token1Bal = await token1.balanceOf(signer._address);
-    vaultBal = await vault.balanceOf(signer._address);
-
-    console.log(
-      "Token balance after call",
-      token0Bal.toString(),
-      transactAmt.toString(),
-      token1Bal.toString(),
-      vaultBal.toString()
-    );
-  }
-
-  await vault.connect(signer).approve(periphery.address, vaultBal);
-  await periphery.connect(signer).vaultWithdraw(vaultBal);
-
-  token0Bal = await token0.balanceOf(signer._address);
-  token1Bal = await token1.balanceOf(signer._address);
-  vaultBal = await vault.balanceOf(signer._address);
-
-  console.log(
-    "Token balance after withdraw",
-    token0Bal.toString(),
-    token1Bal.toString(),
-    vaultBal.toString()
-  );
-
   if (etherscan_verify) {
     await hre.run("verify:verify", {
       address: factory.address,
@@ -122,6 +57,11 @@ async function main() {
     await hre.run("verify:verify", {
       address: vaultAddress,
       constructorArguments: [POOL_ADDRESS, 5000, 7000, 0]
+    });
+
+    await hre.run("verify:verify", {
+      address: periphery.address,
+      constructorArguments: [vaultAddress]
     });
   }
 }

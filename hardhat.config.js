@@ -13,12 +13,5 @@ module.exports = {
         runs: 50
       }
     }
-  },
-  networks: {
-    hardhat: {
-      forking: {
-        url: `https://eth-kovan.alchemyapi.io/v2/${secrets.alchemyAPIKey}`
-      }
-    }
   }
 };
