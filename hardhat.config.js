@@ -13,5 +13,17 @@ module.exports = {
         runs: 50
       }
     }
-  }
+  },
+  networks: {
+    hardhat: {
+      forking: {
+        url: `https://eth-kovan.alchemyapi.io/v2/${secrets.alchemyAPIKey}`
+      }
+    },
+    kovan: {
+      url: `https://eth-kovan.alchemyapi.io/v2/${secrets.alchemyAPIKey}`,
+      accounts: [`0x${secrets.privateKey}`]
+    }
+  },
+  etherscan: { apiKey: secrets.etherscanKey }
 };

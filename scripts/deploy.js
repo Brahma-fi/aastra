@@ -50,7 +50,7 @@ async function main() {
     });
 
     await hre.run("verify:verify", {
-      address: periphery.address,
+      address: router.address,
       constructorArguments: [factory.address]
     });
 

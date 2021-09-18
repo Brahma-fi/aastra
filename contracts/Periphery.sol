@@ -37,7 +37,9 @@ contract Periphery is IPeriphery {
     } 
 
     /// @inheritdoc IPeriphery
-    function vaultDeposit(uint256 amountIn) external override minimumAmount(amountIn) {
+    function vaultDeposit(uint256 amountIn, uint256 slippage) external override minimumAmount(amountIn) {
+        require(slippage <= 100*100, "100% slippage is not allowed");
+
         // Calculate amount to swap based on tokens in vault
         // token0 / token1 = k
         // token0 + token1 = amountIn
@@ -57,6 +59,14 @@ contract Periphery is IPeriphery {
         token0.approve(address(swapRouter), amountToSwap);
 
         // swap token0 for token1
+        uint256 amountOutQuoted = quoter.quoteExactInputSingle(
+            address(token0), 
+            address(token1), 
+            poolFee, 
+            amountToSwap, 
+            0
+        );
+
         ISwapRouter.ExactInputSingleParams memory params =
             ISwapRouter.ExactInputSingleParams({
                 tokenIn: address(token0),
@@ -65,13 +75,7 @@ contract Periphery is IPeriphery {
                 recipient: address(this),
                 deadline: block.timestamp,
                 amountIn: amountToSwap,
-                amountOutMinimum: quoter.quoteExactInputSingle(
-                    address(token0), 
-                    address(token1), 
-                    poolFee, 
-                    amountToSwap, 
-                    0
-                ),
+                amountOutMinimum: amountOutQuoted.mul(100*100 - slippage).div(100*100),
                 sqrtPriceLimitX96: 0
             });
         uint256 amountOut = swapRouter.exactInputSingle(params);

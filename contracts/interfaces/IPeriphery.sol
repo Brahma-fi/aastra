@@ -14,8 +14,9 @@ interface IPeriphery {
      * @notice Calls IVault's deposit method and sends all money back to 
      * user after transactions
      * @param amountIn Value of token0 to be deposited 
+     * @param slippage Value in percentage of allowed slippage (2 digit precision)
      */
-    function vaultDeposit(uint256 amountIn) external;
+    function vaultDeposit(uint256 amountIn, uint256 slippage) external;
 
     /**
       * @notice Calls vault's withdraw function in exchange for shares
