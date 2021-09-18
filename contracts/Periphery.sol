@@ -127,6 +127,7 @@ contract Periphery is IPeriphery {
     /**
       * @notice Get the balance of a token in contract
       * @param token token whose balance needs to be returned
+      * @return balance of a token in contract
      */
     function _tokenBalance(IERC20Metadata token) internal view returns (uint256) {
         return token.balanceOf(address(this));
