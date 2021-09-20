@@ -12,6 +12,7 @@
     "ethers": "^5.4.2",
     "hardhat": "^2.5.0",
     "mocha": "^9.1.0",
+    "node-fetch": "^3.0.0",
     "solgraph": "^0.3.3",
     "solidity-coverage": "^0.7.16",
     "surya": "^0.4.2"
