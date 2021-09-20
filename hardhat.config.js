@@ -2,6 +2,7 @@ require("@nomiclabs/hardhat-waffle");
 require("hardhat-contract-sizer");
 require("@nomiclabs/hardhat-etherscan");
 require("solidity-coverage");
+const secrets = require("./secrets");
 
 module.exports = {
   solidity: {
@@ -22,6 +23,11 @@ module.exports = {
       accounts: [
         "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
       ]
+    },
+    kovan: {
+      url: `https://eth-kovan.alchemyapi.io/v2/${secrets.alchemyAPIKey}`,
+      accounts: [`0x${secrets.privateKey}`]
     }
-  }
+  },
+  etherscan: { apiKey: secrets.etherscanKey }
 };

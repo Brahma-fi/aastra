@@ -1,6 +1,6 @@
 const hre = require("hardhat");
 
-const etherscan_verify = false;
+const etherscan_verify = true;
 const tenderly_fork = false;
 
 const tenderlyConfig = {
@@ -11,11 +11,12 @@ const tenderlyConfig = {
 
 const POOL_ADDRESS = "0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8";
 const STRATEGY_MANAGER_ADDRESS = "0x140713bbD82113e104C3a45661134F9764807922";
-const GOVERNANCE_ADDRESS = "0x140713bbD82113e104C3a45661134F9764807922";
+let GOVERNANCE_ADDRESS = "0x140713bbD82113e104C3a45661134F9764807922";
 
 async function main() {
   const signers = await hre.ethers.getSigners();
   const signerAddr = signers[0].address;
+  GOVERNANCE_ADDRESS = signerAddr;
   console.log(signerAddr);
 
   // if (tenderly_fork) {
@@ -60,6 +61,7 @@ async function main() {
     0
   );
   await tx.wait();
+  console.log("create vault");
 
   const vaultAddress = await factory.managerVault(STRATEGY_MANAGER_ADDRESS);
 
