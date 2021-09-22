@@ -1,6 +1,6 @@
 const hre = require("hardhat");
 
-const etherscan_verify = true;
+const etherscan_verify = false;
 const tenderly_fork = false;
 
 const tenderlyConfig = {
@@ -37,33 +37,31 @@ async function main() {
   // }
 
   const Factory = await hre.ethers.getContractFactory("Factory");
-  const factory = await Factory.deploy(GOVERNANCE_ADDRESS);
+  const factory = await Factory.connect(signers[0]).deploy(GOVERNANCE_ADDRESS);
 
   await factory.deployed();
 
   console.log("Factory deployed to:", factory.address);
 
   const Router = await hre.ethers.getContractFactory("Router");
-  const router = await Router.deploy(factory.address);
+  const router = await Router.connect(signers[0]).deploy(factory.address);
 
   await router.deployed();
 
-  tx = await factory.setRouter(router.address);
+  tx = await factory.connect(signers[0]).setRouter(router.address);
   await tx.wait();
 
   console.log("Router deployed to:", router.address);
 
-  tx = await factory.createVault(
-    POOL_ADDRESS,
-    STRATEGY_MANAGER_ADDRESS,
-    100000,
-    0,
-    0
-  );
+  tx = await factory
+    .connect(signers[0])
+    .createVault(POOL_ADDRESS, STRATEGY_MANAGER_ADDRESS, 100000, 0, 0);
   await tx.wait();
   console.log("create vault");
 
-  const vaultAddress = await factory.managerVault(STRATEGY_MANAGER_ADDRESS);
+  const vaultAddress = await factory
+    .connect(signers[0])
+    .managerVault(STRATEGY_MANAGER_ADDRESS);
 
   console.log("Vault deployed to:", vaultAddress);
 
