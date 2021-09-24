@@ -14,8 +14,8 @@ contract Factory is IFactory {
     address public override governance;
     address public override pendingGovernance;
 
-    constructor() {
-        governance = msg.sender;
+    constructor(address _governance) {
+        governance = _governance;
     }
 
     function createVault(
@@ -95,7 +95,7 @@ contract Factory is IFactory {
             msg.sender == pendingGovernance,
             "Factory : acceptGovernance :: you need to be pendingGovernance to accept governance"
         );
-        GovernanceChange(governance, msg.sender);
+        emit GovernanceChange(governance, msg.sender);
         governance = msg.sender;
     }
 

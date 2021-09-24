@@ -45,7 +45,8 @@ contract Router is IRouter, ReentrancyGuard {
     function newLimitLiquidity(
         int24 _limitLower,
         int24 _limitUpper,
-        uint8 _percentage
+        uint8 _percentage,
+        bool swapEnabled
     ) external override nonReentrant {
         IVault vault = _getVault(msg.sender);
         newLiquidity(
@@ -55,7 +56,7 @@ contract Router is IRouter, ReentrancyGuard {
             vault.limitLower(),
             vault.limitUpper(),
             _percentage,
-            false
+            swapEnabled
         );
         vault.setLimitTicks(_limitLower, _limitUpper);
 

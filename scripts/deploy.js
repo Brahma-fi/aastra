@@ -1,60 +1,87 @@
 const hre = require("hardhat");
-const fs = require('fs');
 
-const etherscan_verify = true;
+const etherscan_verify = false;
+const tenderly_fork = false;
 
+const tenderlyConfig = {
+  accountId: "bapireddy_1",
+  projectId: "project",
+  forkId: "50568bad-900c-402a-8d81-209f3da8c19c"
+};
 
-const POOL_ADDRESS = "0x2BFD0C3169A8C0Cd7B814D38533A0645368F0D80";
-const STRATEGY_MANAGER_ADDRESS = "0x0405d9d1443DFB051D5e8E231e41C911Dc8393a4";
+const POOL_ADDRESS = "0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8";
+const STRATEGY_MANAGER_ADDRESS = "0x140713bbD82113e104C3a45661134F9764807922";
+let GOVERNANCE_ADDRESS = "0x140713bbD82113e104C3a45661134F9764807922";
 
 async function main() {
+  const signers = await hre.ethers.getSigners();
+  const signerAddr = signers[0].address;
+  GOVERNANCE_ADDRESS = signerAddr;
+  console.log(signerAddr);
+
+  // if (tenderly_fork) {
+  //   await fetch(
+  //     `https://api.tenderly.co/api/v1/account/${tenderlyConfig.accountId}/project/${tenderlyConfig.projectId}/fork/${tenderlyConfig.forkId}/balance`,
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({
+  //         accounts: [signerAddr],
+  //         amount: Number(hre.ethers.utils.parseEther("1").toString())
+  //       })
+  //     }
+  //   );
+  // }
 
   const Factory = await hre.ethers.getContractFactory("Factory");
-  const factory = await Factory.deploy();
-
-  const accounts = await hre.ethers.getSigners();
+  const factory = await Factory.connect(signers[0]).deploy(GOVERNANCE_ADDRESS);
 
   await factory.deployed();
 
   console.log("Factory deployed to:", factory.address);
 
   const Router = await hre.ethers.getContractFactory("Router");
-  const router = await Router.deploy(factory.address);
+  const router = await Router.connect(signers[0]).deploy(factory.address);
 
   await router.deployed();
 
-  tx = await factory.setRouter(router.address);
+  tx = await factory.connect(signers[0]).setRouter(router.address);
   await tx.wait();
 
   console.log("Router deployed to:", router.address);
 
-  tx = await factory.createVault(POOL_ADDRESS, STRATEGY_MANAGER_ADDRESS, 5000, 7000, 0);
+  tx = await factory
+    .connect(signers[0])
+    .createVault(POOL_ADDRESS, STRATEGY_MANAGER_ADDRESS, 100000, 0, 0);
   await tx.wait();
+  console.log("create vault");
 
-  const vaultAddress = await factory.managerVault(STRATEGY_MANAGER_ADDRESS);
+  const vaultAddress = await factory
+    .connect(signers[0])
+    .managerVault(STRATEGY_MANAGER_ADDRESS);
 
   console.log("Vault deployed to:", vaultAddress);
 
   if (etherscan_verify) {
     await hre.run("verify:verify", {
-        address: factory.address,
-        constructorArguments: [],
+      address: factory.address,
+      constructorArguments: [GOVERNANCE_ADDRESS]
     });
 
     await hre.run("verify:verify", {
-        address: periphery.address,
-        constructorArguments: [factory.address],
+      address: router.address,
+      constructorArguments: [factory.address]
     });
 
     await hre.run("verify:verify", {
-        address: vaultAddress,
-        constructorArguments: [POOL_ADDRESS, 5000, 7000, 0],
+      address: vaultAddress,
+      constructorArguments: [POOL_ADDRESS, 100000, 0, 0]
     });
-
   }
-
 }
-
 
 main()
   .then(() => process.exit(0))

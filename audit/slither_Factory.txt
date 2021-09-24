@@ -1,0 +1,603 @@
+FullMath.mulDiv(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#14-106) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#67)
+        -inv = (3 * denominator) ^ 2 (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#87)
+FullMath.mulDiv(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#14-106) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#67)
+        -inv *= 2 - denominator * inv (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#91)
+FullMath.mulDiv(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#14-106) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#67)
+        -inv *= 2 - denominator * inv (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#92)
+FullMath.mulDiv(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#14-106) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#67)
+        -inv *= 2 - denominator * inv (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#93)
+FullMath.mulDiv(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#14-106) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#67)
+        -inv *= 2 - denominator * inv (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#94)
+FullMath.mulDiv(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#14-106) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#67)
+        -inv *= 2 - denominator * inv (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#95)
+FullMath.mulDiv(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#14-106) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#67)
+        -inv *= 2 - denominator * inv (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#96)
+FullMath.mulDiv(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#14-106) performs a multiplication on the result of a division:
+        -prod0 = prod0 / twos (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#72)
+        -result = prod0 * inv (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#104)
+LongMath.mulDiv(uint256,uint256,uint256) (contracts/libraries/LongMath.sol#11-103) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (contracts/libraries/LongMath.sol#64)
+        -inv = (3 * denominator) ^ 2 (contracts/libraries/LongMath.sol#84)
+LongMath.mulDiv(uint256,uint256,uint256) (contracts/libraries/LongMath.sol#11-103) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (contracts/libraries/LongMath.sol#64)
+        -inv *= 2 - denominator * inv (contracts/libraries/LongMath.sol#88)
+LongMath.mulDiv(uint256,uint256,uint256) (contracts/libraries/LongMath.sol#11-103) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (contracts/libraries/LongMath.sol#64)
+        -inv *= 2 - denominator * inv (contracts/libraries/LongMath.sol#89)
+LongMath.mulDiv(uint256,uint256,uint256) (contracts/libraries/LongMath.sol#11-103) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (contracts/libraries/LongMath.sol#64)
+        -inv *= 2 - denominator * inv (contracts/libraries/LongMath.sol#90)
+LongMath.mulDiv(uint256,uint256,uint256) (contracts/libraries/LongMath.sol#11-103) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (contracts/libraries/LongMath.sol#64)
+        -inv *= 2 - denominator * inv (contracts/libraries/LongMath.sol#91)
+LongMath.mulDiv(uint256,uint256,uint256) (contracts/libraries/LongMath.sol#11-103) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (contracts/libraries/LongMath.sol#64)
+        -inv *= 2 - denominator * inv (contracts/libraries/LongMath.sol#92)
+LongMath.mulDiv(uint256,uint256,uint256) (contracts/libraries/LongMath.sol#11-103) performs a multiplication on the result of a division:
+        -denominator = denominator / twos (contracts/libraries/LongMath.sol#64)
+        -inv *= 2 - denominator * inv (contracts/libraries/LongMath.sol#93)
+LongMath.mulDiv(uint256,uint256,uint256) (contracts/libraries/LongMath.sol#11-103) performs a multiplication on the result of a division:
+        -prod0 = prod0 / twos (contracts/libraries/LongMath.sol#69)
+        -result = prod0 * inv (contracts/libraries/LongMath.sol#101)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#divide-before-multiply
+
+Reentrancy in Vault.compoundFee() (contracts/Vault.sol#404-409):
+        External calls:
+        - collectFeeAndReinvest(baseLower,baseUpper) (contracts/Vault.sol#406)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#417-423)
+        - collectFeeAndReinvest(limitLower,limitUpper) (contracts/Vault.sol#408)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#417-423)
+        State variables written after the call(s):
+        - collectFeeAndReinvest(limitLower,limitUpper) (contracts/Vault.sol#408)
+                - accruedProtocolFees0 = accruedProtocolFees0.add(feesToProtocol0) (contracts/Vault.sol#521-523)
+        - collectFeeAndReinvest(limitLower,limitUpper) (contracts/Vault.sol#408)
+                - accruedProtocolFees1 = accruedProtocolFees1.add(feesToProtocol1) (contracts/Vault.sol#524-526)
+        - collectFeeAndReinvest(limitLower,limitUpper) (contracts/Vault.sol#408)
+                - accruedStrategyFees0 = accruedStrategyFees0.add(feesToStrategy0) (contracts/Vault.sol#532-534)
+        - collectFeeAndReinvest(limitLower,limitUpper) (contracts/Vault.sol#408)
+                - accruedStrategyFees1 = accruedStrategyFees1.add(feesToStrategy1) (contracts/Vault.sol#535-537)
+Reentrancy in Vault.deposit(uint256,uint256,uint256,uint256,address) (contracts/Vault.sol#104-204):
+        External calls:
+        - poke(baseLower,baseUpper) (contracts/Vault.sol#128)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - poke(limitLower,limitUpper) (contracts/Vault.sol#129)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - token0.safeTransferFrom(msg.sender,address(this),amount0) (contracts/Vault.sol#143)
+        - token1.safeTransferFrom(msg.sender,address(this),amount1) (contracts/Vault.sol#145)
+        - mintLiquidity(baseLower,baseUpper,baseLiquidity) (contracts/Vault.sol#187)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+        - mintLiquidity(limitLower,limitUpper,limitLiquidity) (contracts/Vault.sol#197)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+        State variables written after the call(s):
+        - _mint(to,shares) (contracts/Vault.sol#201)
+                - _totalSupply = _totalSupply.add(amount) (contracts/interfaces/ERC20.sol#233)
+Reentrancy in Vault.withdraw(uint256,uint256,uint256,address) (contracts/Vault.sol#207-255):
+        External calls:
+        - (baseAmount0,baseAmount1) = burnLiquidityShare(baseLower,baseUpper,shares,totalSupply) (contracts/Vault.sol#231-236)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collectedFee0,collectedFee1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#476-482)
+                - (burned0,burned1) = pool.burn(tickLower,tickUpper,liquidity) (contracts/Vault.sol#488)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#492-498)
+        - (limitAmount0,limitAmount1) = burnLiquidityShare(limitLower,limitUpper,shares,totalSupply) (contracts/Vault.sol#238-243)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collectedFee0,collectedFee1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#476-482)
+                - (burned0,burned1) = pool.burn(tickLower,tickUpper,liquidity) (contracts/Vault.sol#488)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#492-498)
+        State variables written after the call(s):
+        - (limitAmount0,limitAmount1) = burnLiquidityShare(limitLower,limitUpper,shares,totalSupply) (contracts/Vault.sol#238-243)
+                - accruedProtocolFees0 = accruedProtocolFees0.add(feesToProtocol0) (contracts/Vault.sol#521-523)
+        - (limitAmount0,limitAmount1) = burnLiquidityShare(limitLower,limitUpper,shares,totalSupply) (contracts/Vault.sol#238-243)
+                - accruedProtocolFees1 = accruedProtocolFees1.add(feesToProtocol1) (contracts/Vault.sol#524-526)
+        - (limitAmount0,limitAmount1) = burnLiquidityShare(limitLower,limitUpper,shares,totalSupply) (contracts/Vault.sol#238-243)
+                - accruedStrategyFees0 = accruedStrategyFees0.add(feesToStrategy0) (contracts/Vault.sol#532-534)
+        - (limitAmount0,limitAmount1) = burnLiquidityShare(limitLower,limitUpper,shares,totalSupply) (contracts/Vault.sol#238-243)
+                - accruedStrategyFees1 = accruedStrategyFees1.add(feesToStrategy1) (contracts/Vault.sol#535-537)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-1
+
+Vault.deposit(uint256,uint256,uint256,uint256,address).limitMintAmount1 (contracts/Vault.sol#161) is a local variable never initialized
+Vault.calculateFee(uint256,uint256).feesToProtocol0 (contracts/Vault.sol#511) is a local variable never initialized
+Vault.deposit(uint256,uint256,uint256,uint256,address).baseMintAmount0 (contracts/Vault.sol#158) is a local variable never initialized
+Vault.calculateFee(uint256,uint256).feesToStrategy1 (contracts/Vault.sol#514) is a local variable never initialized
+Vault.deposit(uint256,uint256,uint256,uint256,address).baseMintAmount1 (contracts/Vault.sol#159) is a local variable never initialized
+Vault.performOptimalSwap(uint256,uint256,uint256,uint256).amountOut (contracts/Vault.sol#301) is a local variable never initialized
+Vault.deposit(uint256,uint256,uint256,uint256,address).limitMintAmount0 (contracts/Vault.sol#160) is a local variable never initialized
+Vault.calculateFee(uint256,uint256).feesToProtocol1 (contracts/Vault.sol#512) is a local variable never initialized
+Vault.calculateFee(uint256,uint256).feesToStrategy0 (contracts/Vault.sol#513) is a local variable never initialized
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#uninitialized-local-variables
+
+Vault.poke(int24,int24) (contracts/Vault.sol#258-263) ignores return value by pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+Vault.mintLiquidity(int24,int24,uint128) (contracts/Vault.sol#392-401) ignores return value by pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+Vault.swapTokensFromPool(bool,uint256) (contracts/Vault.sol#561-589) ignores return value by token0.approve(address(swapRouter),amountInToSwap) (contracts/Vault.sol#572)
+Vault.swapTokensFromPool(bool,uint256) (contracts/Vault.sol#561-589) ignores return value by token1.approve(address(swapRouter),amountInToSwap) (contracts/Vault.sol#574)
+Vault.emergencyBurnAndCollect(address) (contracts/Vault.sol#643-682) ignores return value by pool.burn(baseLower,baseUpper,liquidityBase) (contracts/Vault.sol#652)
+Vault.emergencyBurnAndCollect(address) (contracts/Vault.sol#643-682) ignores return value by pool.collect(to,baseLower,baseUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#654-660)
+Vault.emergencyBurnAndCollect(address) (contracts/Vault.sol#643-682) ignores return value by pool.burn(limitLower,limitUpper,liquidityLimit) (contracts/Vault.sol#666)
+Vault.emergencyBurnAndCollect(address) (contracts/Vault.sol#643-682) ignores return value by pool.collect(to,limitLower,limitUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#669-675)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+
+Vault.withdraw(uint256,uint256,uint256,address).totalSupply (contracts/Vault.sol#221) shadows:
+        - ERC20.totalSupply() (contracts/interfaces/ERC20.sol#96-98) (function)
+        - IERC20.totalSupply() (contracts/interfaces/IERC20.sol#12) (function)
+Vault.burnLiquidityShare(int24,int24,uint256,uint256).totalSupply (contracts/Vault.sol#270) shadows:
+        - ERC20.totalSupply() (contracts/interfaces/ERC20.sol#96-98) (function)
+        - IERC20.totalSupply() (contracts/interfaces/IERC20.sol#12) (function)
+Vault._calcSharesAndAmounts(uint256,uint256).totalSupply (contracts/Vault.sol#699) shadows:
+        - ERC20.totalSupply() (contracts/interfaces/ERC20.sol#96-98) (function)
+        - IERC20.totalSupply() (contracts/interfaces/IERC20.sol#12) (function)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#local-variable-shadowing
+
+Vault.collectProtocol(uint256,uint256,address) (contracts/Vault.sol#592-601) should emit an event for: 
+        - accruedProtocolFees0 = accruedProtocolFees0.sub(amount0) (contracts/Vault.sol#597) 
+        - accruedProtocolFees1 = accruedProtocolFees1.sub(amount1) (contracts/Vault.sol#598) 
+Vault.collectStrategy(uint256,uint256,address) (contracts/Vault.sol#604-613) should emit an event for: 
+        - accruedStrategyFees0 = accruedStrategyFees0.sub(amount0) (contracts/Vault.sol#609) 
+        - accruedStrategyFees1 = accruedStrategyFees1.sub(amount1) (contracts/Vault.sol#610) 
+Vault.setBaseTicks(int24,int24) (contracts/Vault.sol#616-622) should emit an event for: 
+        - (baseLower,baseUpper) = (_baseLower,_baseUpper) (contracts/Vault.sol#621) 
+        - (baseLower,baseUpper) = (_baseLower,_baseUpper) (contracts/Vault.sol#621) 
+Vault.setLimitTicks(int24,int24) (contracts/Vault.sol#625-631) should emit an event for: 
+        - (limitLower,limitUpper) = (_limitLower,_limitUpper) (contracts/Vault.sol#630) 
+        - (limitLower,limitUpper) = (_limitLower,_limitUpper) (contracts/Vault.sol#630) 
+Vault.setMaxTotalSupply(uint256) (contracts/Vault.sol#634-640) should emit an event for: 
+        - maxTotalSupply = _maxTotalSupply (contracts/Vault.sol#639) 
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-events-arithmetic
+
+Factory.constructor(address)._governance (contracts/Factory.sol#17) lacks a zero-check on :
+                - governance = _governance (contracts/Factory.sol#18)
+Factory.setGovernance(address)._governance (contracts/Factory.sol#81) lacks a zero-check on :
+                - pendingGovernance = _governance (contracts/Factory.sol#86)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+
+Reentrancy in Vault._burnAndCollect(int24,int24,uint128) (contracts/Vault.sol#459-504):
+        External calls:
+        - poke(tickLower,tickUpper) (contracts/Vault.sol#474)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - (collectedFee0,collectedFee1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#476-482)
+        State variables written after the call(s):
+        - calculateFee(collectedFee0,collectedFee1) (contracts/Vault.sol#484)
+                - accruedProtocolFees0 = accruedProtocolFees0.add(feesToProtocol0) (contracts/Vault.sol#521-523)
+        - calculateFee(collectedFee0,collectedFee1) (contracts/Vault.sol#484)
+                - accruedProtocolFees1 = accruedProtocolFees1.add(feesToProtocol1) (contracts/Vault.sol#524-526)
+        - calculateFee(collectedFee0,collectedFee1) (contracts/Vault.sol#484)
+                - accruedStrategyFees0 = accruedStrategyFees0.add(feesToStrategy0) (contracts/Vault.sol#532-534)
+        - calculateFee(collectedFee0,collectedFee1) (contracts/Vault.sol#484)
+                - accruedStrategyFees1 = accruedStrategyFees1.add(feesToStrategy1) (contracts/Vault.sol#535-537)
+Reentrancy in Vault.collectFeeAndReinvest(int24,int24) (contracts/Vault.sol#414-436):
+        External calls:
+        - poke(tickLower,tickUpper) (contracts/Vault.sol#415)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#417-423)
+        State variables written after the call(s):
+        - (fee0,fee1) = calculateFee(collect0,collect1) (contracts/Vault.sol#426)
+                - accruedProtocolFees0 = accruedProtocolFees0.add(feesToProtocol0) (contracts/Vault.sol#521-523)
+        - (fee0,fee1) = calculateFee(collect0,collect1) (contracts/Vault.sol#426)
+                - accruedProtocolFees1 = accruedProtocolFees1.add(feesToProtocol1) (contracts/Vault.sol#524-526)
+        - (fee0,fee1) = calculateFee(collect0,collect1) (contracts/Vault.sol#426)
+                - accruedStrategyFees0 = accruedStrategyFees0.add(feesToStrategy0) (contracts/Vault.sol#532-534)
+        - (fee0,fee1) = calculateFee(collect0,collect1) (contracts/Vault.sol#426)
+                - accruedStrategyFees1 = accruedStrategyFees1.add(feesToStrategy1) (contracts/Vault.sol#535-537)
+Reentrancy in Vault.deposit(uint256,uint256,uint256,uint256,address) (contracts/Vault.sol#104-204):
+        External calls:
+        - poke(baseLower,baseUpper) (contracts/Vault.sol#128)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - poke(limitLower,limitUpper) (contracts/Vault.sol#129)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - token0.safeTransferFrom(msg.sender,address(this),amount0) (contracts/Vault.sol#143)
+        - token1.safeTransferFrom(msg.sender,address(this),amount1) (contracts/Vault.sol#145)
+        - mintLiquidity(baseLower,baseUpper,baseLiquidity) (contracts/Vault.sol#187)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+        - mintLiquidity(limitLower,limitUpper,limitLiquidity) (contracts/Vault.sol#197)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+        State variables written after the call(s):
+        - _mint(to,shares) (contracts/Vault.sol#201)
+                - _balances[account] = _balances[account].add(amount) (contracts/interfaces/ERC20.sol#234)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-2
+
+Reentrancy in Vault._burnAndCollect(int24,int24,uint128) (contracts/Vault.sol#459-504):
+        External calls:
+        - poke(tickLower,tickUpper) (contracts/Vault.sol#474)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - (collectedFee0,collectedFee1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#476-482)
+        Event emitted after the call(s):
+        - CollectFees(feesToVault0,feesToVault1,feesToStrategy0,feesToStrategy1) (contracts/Vault.sol#550-555)
+                - calculateFee(collectedFee0,collectedFee1) (contracts/Vault.sol#484)
+Reentrancy in Vault.collectFeeAndReinvest(int24,int24) (contracts/Vault.sol#414-436):
+        External calls:
+        - poke(tickLower,tickUpper) (contracts/Vault.sol#415)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#417-423)
+        Event emitted after the call(s):
+        - CollectFees(feesToVault0,feesToVault1,feesToStrategy0,feesToStrategy1) (contracts/Vault.sol#550-555)
+                - (fee0,fee1) = calculateFee(collect0,collect1) (contracts/Vault.sol#426)
+Reentrancy in Vault.compoundFee() (contracts/Vault.sol#404-409):
+        External calls:
+        - collectFeeAndReinvest(baseLower,baseUpper) (contracts/Vault.sol#406)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#417-423)
+        - collectFeeAndReinvest(limitLower,limitUpper) (contracts/Vault.sol#408)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#417-423)
+        Event emitted after the call(s):
+        - CollectFees(feesToVault0,feesToVault1,feesToStrategy0,feesToStrategy1) (contracts/Vault.sol#550-555)
+                - collectFeeAndReinvest(limitLower,limitUpper) (contracts/Vault.sol#408)
+Reentrancy in Vault.deposit(uint256,uint256,uint256,uint256,address) (contracts/Vault.sol#104-204):
+        External calls:
+        - poke(baseLower,baseUpper) (contracts/Vault.sol#128)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - poke(limitLower,limitUpper) (contracts/Vault.sol#129)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+        - token0.safeTransferFrom(msg.sender,address(this),amount0) (contracts/Vault.sol#143)
+        - token1.safeTransferFrom(msg.sender,address(this),amount1) (contracts/Vault.sol#145)
+        - mintLiquidity(baseLower,baseUpper,baseLiquidity) (contracts/Vault.sol#187)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+        - mintLiquidity(limitLower,limitUpper,limitLiquidity) (contracts/Vault.sol#197)
+                - pool.mint(address(this),tickLower,tickUpper,liquidity,) (contracts/Vault.sol#399)
+        Event emitted after the call(s):
+        - Deposit(msg.sender,to,shares,amount0,amount1) (contracts/Vault.sol#202)
+        - Transfer(address(0),account,amount) (contracts/interfaces/ERC20.sol#235)
+                - _mint(to,shares) (contracts/Vault.sol#201)
+Reentrancy in Vault.withdraw(uint256,uint256,uint256,address) (contracts/Vault.sol#207-255):
+        External calls:
+        - (baseAmount0,baseAmount1) = burnLiquidityShare(baseLower,baseUpper,shares,totalSupply) (contracts/Vault.sol#231-236)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collectedFee0,collectedFee1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#476-482)
+                - (burned0,burned1) = pool.burn(tickLower,tickUpper,liquidity) (contracts/Vault.sol#488)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#492-498)
+        - (limitAmount0,limitAmount1) = burnLiquidityShare(limitLower,limitUpper,shares,totalSupply) (contracts/Vault.sol#238-243)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collectedFee0,collectedFee1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#476-482)
+                - (burned0,burned1) = pool.burn(tickLower,tickUpper,liquidity) (contracts/Vault.sol#488)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#492-498)
+        Event emitted after the call(s):
+        - CollectFees(feesToVault0,feesToVault1,feesToStrategy0,feesToStrategy1) (contracts/Vault.sol#550-555)
+                - (limitAmount0,limitAmount1) = burnLiquidityShare(limitLower,limitUpper,shares,totalSupply) (contracts/Vault.sol#238-243)
+Reentrancy in Vault.withdraw(uint256,uint256,uint256,address) (contracts/Vault.sol#207-255):
+        External calls:
+        - (baseAmount0,baseAmount1) = burnLiquidityShare(baseLower,baseUpper,shares,totalSupply) (contracts/Vault.sol#231-236)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collectedFee0,collectedFee1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#476-482)
+                - (burned0,burned1) = pool.burn(tickLower,tickUpper,liquidity) (contracts/Vault.sol#488)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#492-498)
+        - (limitAmount0,limitAmount1) = burnLiquidityShare(limitLower,limitUpper,shares,totalSupply) (contracts/Vault.sol#238-243)
+                - pool.burn(tickLower,tickUpper,0) (contracts/Vault.sol#261)
+                - (collectedFee0,collectedFee1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#476-482)
+                - (burned0,burned1) = pool.burn(tickLower,tickUpper,liquidity) (contracts/Vault.sol#488)
+                - (collect0,collect1) = pool.collect(address(this),tickLower,tickUpper,type()(uint128).max,type()(uint128).max) (contracts/Vault.sol#492-498)
+        - token0.safeTransfer(to,amount0) (contracts/Vault.sol#251)
+        - token1.safeTransfer(to,amount1) (contracts/Vault.sol#252)
+        Event emitted after the call(s):
+        - Withdraw(msg.sender,to,shares,amount0,amount1) (contracts/Vault.sol#254)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+
+FullMath.mulDiv(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#14-106) uses assembly
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#26-30)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#35-37)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#52-54)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#56-59)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#66-68)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#71-73)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#77-79)
+TickMath.getTickAtSqrtRatio(uint160) (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#61-204) uses assembly
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#69-73)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#74-78)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#79-83)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#84-88)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#89-93)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#94-98)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#99-103)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#104-107)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#114-119)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#120-125)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#126-131)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#132-137)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#138-143)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#144-149)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#150-155)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#156-161)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#162-167)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#168-173)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#174-179)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#180-185)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#186-191)
+        - INLINE ASM (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#192-196)
+Address.isContract(address) (contracts/interfaces/Address.sol#26-35) uses assembly
+        - INLINE ASM (contracts/interfaces/Address.sol#33)
+Address._verifyCallResult(bool,bytes,string) (contracts/interfaces/Address.sol#171-188) uses assembly
+        - INLINE ASM (contracts/interfaces/Address.sol#180-183)
+LongMath.mulDiv(uint256,uint256,uint256) (contracts/libraries/LongMath.sol#11-103) uses assembly
+        - INLINE ASM (contracts/libraries/LongMath.sol#23-27)
+        - INLINE ASM (contracts/libraries/LongMath.sol#32-34)
+        - INLINE ASM (contracts/libraries/LongMath.sol#49-51)
+        - INLINE ASM (contracts/libraries/LongMath.sol#53-56)
+        - INLINE ASM (contracts/libraries/LongMath.sol#63-65)
+        - INLINE ASM (contracts/libraries/LongMath.sol#68-70)
+        - INLINE ASM (contracts/libraries/LongMath.sol#74-76)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#assembly-usage
+
+Different versions of Solidity is used:
+        - Version used: ['>=0.4.0', '>=0.5.0', '>=0.6.0', '>=0.6.2', '>=0.7.5']
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolEvents.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolImmutables.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#2)
+        - >=0.4.0 (node_modules/@uniswap/v3-core/contracts/libraries/FixedPoint96.sol#2)
+        - >=0.4.0 (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#2)
+        - >=0.7.5 (node_modules/@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol#2)
+        - v2 (node_modules/@uniswap/v3-periphery/contracts/interfaces/ISwapRouter.sol#3)
+        - >=0.5.0 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-periphery/contracts/libraries/PositionKey.sol#2)
+        - >=0.7.5 (contracts/Factory.sol#1)
+        - >=0.7.5 (contracts/Vault.sol#1)
+        - v2 (contracts/Vault.sol#2)
+        - >=0.6.2 (contracts/interfaces/Address.sol#3)
+        - >=0.6.0 (contracts/interfaces/Context.sol#3)
+        - >=0.6.0 (contracts/interfaces/ERC20.sol#3)
+        - >=0.6.0 (contracts/interfaces/IERC20.sol#3)
+        - >=0.7.5 (contracts/interfaces/IERC20Metadata.sol#3)
+        - >=0.7.5 (contracts/interfaces/IFactory.sol#1)
+        - >=0.7.5 (contracts/interfaces/IVault.sol#1)
+        - >=0.6.0 (contracts/interfaces/Math.sol#3)
+        - >=0.6.0 (contracts/interfaces/ReentrancyGuard.sol#3)
+        - >=0.6.0 (contracts/interfaces/SafeERC20.sol#3)
+        - >=0.6.0 (contracts/interfaces/SafeMath.sol#3)
+        - >=0.7.5 (contracts/libraries/LongMath.sol#1)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used
+
+Address.functionCall(address,bytes) (contracts/interfaces/Address.sol#79-81) is never used and should be removed
+Address.functionCallWithValue(address,bytes,uint256) (contracts/interfaces/Address.sol#104-106) is never used and should be removed
+Address.functionDelegateCall(address,bytes) (contracts/interfaces/Address.sol#153-155) is never used and should be removed
+Address.functionDelegateCall(address,bytes,string) (contracts/interfaces/Address.sol#163-169) is never used and should be removed
+Address.functionStaticCall(address,bytes) (contracts/interfaces/Address.sol#129-131) is never used and should be removed
+Address.functionStaticCall(address,bytes,string) (contracts/interfaces/Address.sol#139-145) is never used and should be removed
+Address.sendValue(address,uint256) (contracts/interfaces/Address.sol#53-59) is never used and should be removed
+Context._msgData() (contracts/interfaces/Context.sol#20-23) is never used and should be removed
+ERC20._setupDecimals(uint8) (contracts/interfaces/ERC20.sol#287-289) is never used and should be removed
+FullMath.mulDivRoundingUp(uint256,uint256,uint256) (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#113-123) is never used and should be removed
+Math.average(uint256,uint256) (contracts/interfaces/Math.sol#27-30) is never used and should be removed
+SafeERC20.safeApprove(IERC20,address,uint256) (contracts/interfaces/SafeERC20.sol#37-46) is never used and should be removed
+SafeERC20.safeDecreaseAllowance(IERC20,address,uint256) (contracts/interfaces/SafeERC20.sol#53-56) is never used and should be removed
+SafeERC20.safeIncreaseAllowance(IERC20,address,uint256) (contracts/interfaces/SafeERC20.sol#48-51) is never used and should be removed
+SafeMath.div(uint256,uint256,string) (contracts/interfaces/SafeMath.sol#190-193) is never used and should be removed
+SafeMath.mod(uint256,uint256) (contracts/interfaces/SafeMath.sol#152-155) is never used and should be removed
+SafeMath.mod(uint256,uint256,string) (contracts/interfaces/SafeMath.sol#210-213) is never used and should be removed
+SafeMath.tryAdd(uint256,uint256) (contracts/interfaces/SafeMath.sol#24-28) is never used and should be removed
+SafeMath.tryDiv(uint256,uint256) (contracts/interfaces/SafeMath.sol#60-63) is never used and should be removed
+SafeMath.tryMod(uint256,uint256) (contracts/interfaces/SafeMath.sol#70-73) is never used and should be removed
+SafeMath.tryMul(uint256,uint256) (contracts/interfaces/SafeMath.sol#45-53) is never used and should be removed
+SafeMath.trySub(uint256,uint256) (contracts/interfaces/SafeMath.sol#35-38) is never used and should be removed
+TickMath.getTickAtSqrtRatio(uint160) (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#61-204) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code
+
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolEvents.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolImmutables.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#2) allows old versions
+Pragma version>=0.4.0 (node_modules/@uniswap/v3-core/contracts/libraries/FixedPoint96.sol#2) allows old versions
+Pragma version>=0.4.0 (node_modules/@uniswap/v3-core/contracts/libraries/FullMath.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-periphery/contracts/libraries/PositionKey.sol#2) allows old versions
+Pragma version>=0.6.2 (contracts/interfaces/Address.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/Context.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/ERC20.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/IERC20.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/Math.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/ReentrancyGuard.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/SafeERC20.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/SafeMath.sol#3) allows old versions
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+Low level call in Address.sendValue(address,uint256) (contracts/interfaces/Address.sol#53-59):
+        - (success) = recipient.call{value: amount}() (contracts/interfaces/Address.sol#57)
+Low level call in Address.functionCallWithValue(address,bytes,uint256,string) (contracts/interfaces/Address.sol#114-121):
+        - (success,returndata) = target.call{value: value}(data) (contracts/interfaces/Address.sol#119)
+Low level call in Address.functionStaticCall(address,bytes,string) (contracts/interfaces/Address.sol#139-145):
+        - (success,returndata) = target.staticcall(data) (contracts/interfaces/Address.sol#143)
+Low level call in Address.functionDelegateCall(address,bytes,string) (contracts/interfaces/Address.sol#163-169):
+        - (success,returndata) = target.delegatecall(data) (contracts/interfaces/Address.sol#167)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#low-level-calls
+
+Parameter Factory.createVault(address,address,uint256,uint256,uint256)._uniswapPool (contracts/Factory.sol#22) is not in mixedCase
+Parameter Factory.createVault(address,address,uint256,uint256,uint256)._strategyManager (contracts/Factory.sol#23) is not in mixedCase
+Parameter Factory.createVault(address,address,uint256,uint256,uint256)._protocolFee (contracts/Factory.sol#24) is not in mixedCase
+Parameter Factory.createVault(address,address,uint256,uint256,uint256)._strategyFee (contracts/Factory.sol#25) is not in mixedCase
+Parameter Factory.createVault(address,address,uint256,uint256,uint256)._maxCappedLimit (contracts/Factory.sol#26) is not in mixedCase
+Parameter Factory.updateManager(address,address)._newManager (contracts/Factory.sol#46) is not in mixedCase
+Parameter Factory.updateManager(address,address)._vault (contracts/Factory.sol#46) is not in mixedCase
+Parameter Factory.setRouter(address)._router (contracts/Factory.sol#69) is not in mixedCase
+Parameter Factory.setGovernance(address)._governance (contracts/Factory.sol#81) is not in mixedCase
+Parameter Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool)._lowerTick (contracts/Vault.sol#342) is not in mixedCase
+Parameter Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool)._upperTick (contracts/Vault.sol#343) is not in mixedCase
+Parameter Vault.setBaseTicks(int24,int24)._baseLower (contracts/Vault.sol#616) is not in mixedCase
+Parameter Vault.setBaseTicks(int24,int24)._baseUpper (contracts/Vault.sol#616) is not in mixedCase
+Parameter Vault.setLimitTicks(int24,int24)._limitLower (contracts/Vault.sol#625) is not in mixedCase
+Parameter Vault.setLimitTicks(int24,int24)._limitUpper (contracts/Vault.sol#625) is not in mixedCase
+Parameter Vault.setMaxTotalSupply(uint256)._maxTotalSupply (contracts/Vault.sol#634) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+
+Redundant expression "this (contracts/interfaces/Context.sol#21)" inContext (contracts/interfaces/Context.sol#15-24)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#redundant-statements
+
+Variable IUniswapV3PoolOwnerActions.collectProtocol(address,uint128,uint128).amount0Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#20) is too similar to IUniswapV3PoolOwnerActions.collectProtocol(address,uint128,uint128).amount1Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#21)
+Variable IUniswapV3PoolOwnerActions.collectProtocol(address,uint128,uint128).amount0Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#20) is too similar to IUniswapV3PoolActions.collect(address,int24,int24,uint128,uint128).amount1Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#48)
+Variable IUniswapV3PoolActions.collect(address,int24,int24,uint128,uint128).amount0Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#47) is too similar to IUniswapV3PoolActions.collect(address,int24,int24,uint128,uint128).amount1Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#48)
+Variable IUniswapV3PoolActions.collect(address,int24,int24,uint128,uint128).amount0Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#47) is too similar to IUniswapV3PoolOwnerActions.collectProtocol(address,uint128,uint128).amount1Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#21)
+Variable IUniswapV3PoolState.positions(bytes32).feeGrowthInside0LastX128 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#93) is too similar to IUniswapV3PoolState.positions(bytes32).feeGrowthInside1LastX128 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#94)
+Variable IUniswapV3PoolState.ticks(int24).feeGrowthOutside0X128 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#70) is too similar to IUniswapV3PoolState.ticks(int24).feeGrowthOutside1X128 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#71)
+Variable IUniswapV3PoolOwnerActions.setFeeProtocol(uint8,uint8).feeProtocol0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#10) is too similar to IUniswapV3PoolOwnerActions.setFeeProtocol(uint8,uint8).feeProtocol1 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#10)
+Variable IUniswapV3PoolState.positions(bytes32).tokensOwed0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#95) is too similar to IUniswapV3PoolState.positions(bytes32).tokensOwed1 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#96)
+Variable IUniswapV3MintCallback.uniswapV3MintCallback(uint256,uint256,bytes).amount0Owed (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol#14) is too similar to IUniswapV3MintCallback.uniswapV3MintCallback(uint256,uint256,bytes).amount1Owed (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3MintCallback.sol#15)
+Variable IUniswapV3SwapCallback.uniswapV3SwapCallback(int256,int256,bytes).amount0Delta (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol#17) is too similar to IUniswapV3SwapCallback.uniswapV3SwapCallback(int256,int256,bytes).amount1Delta (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol#18)
+Variable LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#103) is too similar to LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#104)
+Variable LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#122) is too similar to LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#84)
+Variable LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#24) is too similar to LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#123)
+Variable LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#24) is too similar to LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#59)
+Variable LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#83) is too similar to LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#41)
+Variable LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#83) is too similar to LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#104)
+Variable LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#40) is too similar to LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#84)
+Variable LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#58) is too similar to LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#104)
+Variable LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#122) is too similar to LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#104)
+Variable LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#122) is too similar to LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#41)
+Variable LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#103) is too similar to LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#59)
+Variable LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#24) is too similar to LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#84)
+Variable LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#83) is too similar to LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#59)
+Variable LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#24) is too similar to LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#25)
+Variable LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#40) is too similar to LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#104)
+Variable LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#40) is too similar to LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#41)
+Variable LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#58) is too similar to LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#59)
+Variable LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#122) is too similar to LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#59)
+Variable LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#122) is too similar to LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#123)
+Variable LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#24) is too similar to LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#41)
+Variable LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#24) is too similar to LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#104)
+Variable LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#83) is too similar to LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#84)
+Variable LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#40) is too similar to LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#59)
+Variable LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#58) is too similar to LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#123)
+Variable LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#40) is too similar to LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#25)
+Variable LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#103) is too similar to LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#25)
+Variable LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#58) is too similar to LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#41)
+Variable LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#83) is too similar to LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#123)
+Variable LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#122) is too similar to LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#25)
+Variable LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#58) is too similar to LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#25)
+Variable LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#103) is too similar to LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#84)
+Variable LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#103) is too similar to LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#123)
+Variable LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#40) is too similar to LiquidityAmounts.getAmountsForLiquidity(uint160,uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#123)
+Variable LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#83) is too similar to LiquidityAmounts.getLiquidityForAmount0(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#25)
+Variable LiquidityAmounts.getLiquidityForAmounts(uint160,uint160,uint160,uint256,uint256).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#58) is too similar to LiquidityAmounts.getAmount0ForLiquidity(uint160,uint160,uint128).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#84)
+Variable LiquidityAmounts.getAmount1ForLiquidity(uint160,uint160,uint128).sqrtRatioAX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#103) is too similar to LiquidityAmounts.getLiquidityForAmount1(uint160,uint160,uint256).sqrtRatioBX96 (node_modules/@uniswap/v3-periphery/contracts/libraries/LiquidityAmounts.sol#41)
+Variable Vault.accruedProtocolFees0 (contracts/Vault.sol#51) is too similar to Vault.accruedProtocolFees1 (contracts/Vault.sol#53)
+Variable Vault.accruedStrategyFees0 (contracts/Vault.sol#52) is too similar to Vault.accruedStrategyFees1 (contracts/Vault.sol#54)
+Variable Vault.performOptimalSwap(uint256,uint256,uint256,uint256).actualAmount0 (contracts/Vault.sol#293) is too similar to Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool).actualAmount1 (contracts/Vault.sol#349)
+Variable Vault.performOptimalSwap(uint256,uint256,uint256,uint256).actualAmount0 (contracts/Vault.sol#293) is too similar to Vault.performOptimalSwap(uint256,uint256,uint256,uint256).actualAmount1 (contracts/Vault.sol#294)
+Variable Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool).actualAmount0 (contracts/Vault.sol#349) is too similar to Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool).actualAmount1 (contracts/Vault.sol#349)
+Variable Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool).actualAmount0 (contracts/Vault.sol#349) is too similar to Vault.performOptimalSwap(uint256,uint256,uint256,uint256).actualAmount1 (contracts/Vault.sol#294)
+Variable Vault.uniswapV3SwapCallback(int256,int256,bytes).amount0Delta (contracts/Vault.sol#918) is too similar to Vault.uniswapV3SwapCallback(int256,int256,bytes).amount1Delta (contracts/Vault.sol#919)
+Variable IUniswapV3SwapCallback.uniswapV3SwapCallback(int256,int256,bytes).amount0Delta (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol#17) is too similar to Vault.uniswapV3SwapCallback(int256,int256,bytes).amount1Delta (contracts/Vault.sol#919)
+Variable IVault.deposit(uint256,uint256,uint256,uint256,address).amount0Desired (contracts/interfaces/IVault.sol#268) is too similar to IVault.deposit(uint256,uint256,uint256,uint256,address).amount1Desired (contracts/interfaces/IVault.sol#269)
+Variable Vault._calcSharesAndAmounts(uint256,uint256).amount0Desired (contracts/Vault.sol#688) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).amount1Desired (contracts/Vault.sol#106)
+Variable Vault._calcSharesAndAmounts(uint256,uint256).amount0Desired (contracts/Vault.sol#688) is too similar to Vault._calcSharesAndAmounts(uint256,uint256).amount1Desired (contracts/Vault.sol#689)
+Variable IVault.deposit(uint256,uint256,uint256,uint256,address).amount0Desired (contracts/interfaces/IVault.sol#268) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).amount1Desired (contracts/Vault.sol#106)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).amount0Desired (contracts/Vault.sol#105) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).amount1Desired (contracts/Vault.sol#106)
+Variable Vault._calcSharesAndAmounts(uint256,uint256).amount0Desired (contracts/Vault.sol#688) is too similar to IVault.deposit(uint256,uint256,uint256,uint256,address).amount1Desired (contracts/interfaces/IVault.sol#269)
+Variable Vault.uniswapV3SwapCallback(int256,int256,bytes).amount0Delta (contracts/Vault.sol#918) is too similar to IUniswapV3SwapCallback.uniswapV3SwapCallback(int256,int256,bytes).amount1Delta (node_modules/@uniswap/v3-core/contracts/interfaces/callback/IUniswapV3SwapCallback.sol#18)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).amount0Desired (contracts/Vault.sol#105) is too similar to IVault.deposit(uint256,uint256,uint256,uint256,address).amount1Desired (contracts/interfaces/IVault.sol#269)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).amount0Desired (contracts/Vault.sol#105) is too similar to Vault._calcSharesAndAmounts(uint256,uint256).amount1Desired (contracts/Vault.sol#689)
+Variable IVault.deposit(uint256,uint256,uint256,uint256,address).amount0Desired (contracts/interfaces/IVault.sol#268) is too similar to Vault._calcSharesAndAmounts(uint256,uint256).amount1Desired (contracts/Vault.sol#689)
+Variable Vault.getTotalAmounts().baseAmount0 (contracts/Vault.sol#737) is too similar to Vault.getTotalAmounts().baseAmount1 (contracts/Vault.sol#737)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).baseAmount0 (contracts/Vault.sol#147) is too similar to Vault.getTotalAmounts().baseAmount1 (contracts/Vault.sol#737)
+Variable Vault.withdraw(uint256,uint256,uint256,address).baseAmount0 (contracts/Vault.sol#231) is too similar to Vault.getTotalAmounts().baseAmount1 (contracts/Vault.sol#737)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).baseAmount0 (contracts/Vault.sol#147) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).baseAmount1 (contracts/Vault.sol#147)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).baseAmount0 (contracts/Vault.sol#147) is too similar to Vault.withdraw(uint256,uint256,uint256,address).baseAmount1 (contracts/Vault.sol#231)
+Variable Vault.getTotalAmounts().baseAmount0 (contracts/Vault.sol#737) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).baseAmount1 (contracts/Vault.sol#147)
+Variable Vault.getTotalAmounts().baseAmount0 (contracts/Vault.sol#737) is too similar to Vault.withdraw(uint256,uint256,uint256,address).baseAmount1 (contracts/Vault.sol#231)
+Variable Vault.withdraw(uint256,uint256,uint256,address).baseAmount0 (contracts/Vault.sol#231) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).baseAmount1 (contracts/Vault.sol#147)
+Variable Vault.withdraw(uint256,uint256,uint256,address).baseAmount0 (contracts/Vault.sol#231) is too similar to Vault.withdraw(uint256,uint256,uint256,address).baseAmount1 (contracts/Vault.sol#231)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).baseMintAmount0 (contracts/Vault.sol#158) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).baseMintAmount1 (contracts/Vault.sol#159)
+Variable Vault._burnAndCollect(int24,int24,uint128).collectedFee0 (contracts/Vault.sol#476) is too similar to Vault._burnAndCollect(int24,int24,uint128).collectedFee1 (contracts/Vault.sol#476)
+Variable Vault.calculateFee(uint256,uint256).feesToProtocol0 (contracts/Vault.sol#511) is too similar to Vault.calculateFee(uint256,uint256).feesToProtocol1 (contracts/Vault.sol#512)
+Variable Vault.calculateFee(uint256,uint256).feesToStrategy0 (contracts/Vault.sol#513) is too similar to Vault.calculateFee(uint256,uint256).feesToStrategy1 (contracts/Vault.sol#514)
+Variable Vault.burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/Vault.sol#450) is too similar to Vault._burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/Vault.sol#469)
+Variable Vault.burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/Vault.sol#450) is too similar to IVault.burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/interfaces/IVault.sol#178)
+Variable Vault._burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/Vault.sol#468) is too similar to Vault._burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/Vault.sol#469)
+Variable IVault.burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/interfaces/IVault.sol#177) is too similar to Vault._burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/Vault.sol#469)
+Variable IVault.burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/interfaces/IVault.sol#177) is too similar to IVault.burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/interfaces/IVault.sol#178)
+Variable Vault.burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/Vault.sol#450) is too similar to Vault.burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/Vault.sol#451)
+Variable IVault.burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/interfaces/IVault.sol#177) is too similar to Vault.burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/Vault.sol#451)
+Variable Vault._burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/Vault.sol#468) is too similar to Vault.calculateFee(uint256,uint256).feesToVault1 (contracts/Vault.sol#507)
+Variable IVault.burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/interfaces/IVault.sol#177) is too similar to Vault.calculateFee(uint256,uint256).feesToVault1 (contracts/Vault.sol#507)
+Variable Vault.calculateFee(uint256,uint256).feesToVault0 (contracts/Vault.sol#507) is too similar to Vault.calculateFee(uint256,uint256).feesToVault1 (contracts/Vault.sol#507)
+Variable Vault._burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/Vault.sol#468) is too similar to Vault.burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/Vault.sol#451)
+Variable Vault.calculateFee(uint256,uint256).feesToVault0 (contracts/Vault.sol#507) is too similar to IVault.burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/interfaces/IVault.sol#178)
+Variable Vault.burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/Vault.sol#450) is too similar to Vault.calculateFee(uint256,uint256).feesToVault1 (contracts/Vault.sol#507)
+Variable Vault.calculateFee(uint256,uint256).feesToVault0 (contracts/Vault.sol#507) is too similar to Vault.burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/Vault.sol#451)
+Variable Vault._burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/Vault.sol#468) is too similar to IVault.burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/interfaces/IVault.sol#178)
+Variable Vault.calculateFee(uint256,uint256).feesToVault0 (contracts/Vault.sol#507) is too similar to Vault._burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/Vault.sol#469)
+Variable Vault.withdraw(uint256,uint256,uint256,address).limitAmount0 (contracts/Vault.sol#238) is too similar to Vault.withdraw(uint256,uint256,uint256,address).limitAmount1 (contracts/Vault.sol#238)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).limitAmount0 (contracts/Vault.sol#151) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).limitAmount1 (contracts/Vault.sol#151)
+Variable Vault.withdraw(uint256,uint256,uint256,address).limitAmount0 (contracts/Vault.sol#238) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).limitAmount1 (contracts/Vault.sol#151)
+Variable Vault.withdraw(uint256,uint256,uint256,address).limitAmount0 (contracts/Vault.sol#238) is too similar to Vault.getTotalAmounts().limitAmount1 (contracts/Vault.sol#741)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).limitAmount0 (contracts/Vault.sol#151) is too similar to Vault.getTotalAmounts().limitAmount1 (contracts/Vault.sol#741)
+Variable Vault.getTotalAmounts().limitAmount0 (contracts/Vault.sol#741) is too similar to Vault.getTotalAmounts().limitAmount1 (contracts/Vault.sol#741)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).limitAmount0 (contracts/Vault.sol#151) is too similar to Vault.withdraw(uint256,uint256,uint256,address).limitAmount1 (contracts/Vault.sol#238)
+Variable Vault.getTotalAmounts().limitAmount0 (contracts/Vault.sol#741) is too similar to Vault.withdraw(uint256,uint256,uint256,address).limitAmount1 (contracts/Vault.sol#238)
+Variable Vault.getTotalAmounts().limitAmount0 (contracts/Vault.sol#741) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).limitAmount1 (contracts/Vault.sol#151)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).limitMintAmount0 (contracts/Vault.sol#160) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).limitMintAmount1 (contracts/Vault.sol#161)
+Variable Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool).token0AfterSwap (contracts/Vault.sol#357) is too similar to Vault.performOptimalSwap(uint256,uint256,uint256,uint256).token1AfterSwap (contracts/Vault.sol#297)
+Variable Vault.performOptimalSwap(uint256,uint256,uint256,uint256).token0AfterSwap (contracts/Vault.sol#297) is too similar to Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool).token1AfterSwap (contracts/Vault.sol#357)
+Variable Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool).token0AfterSwap (contracts/Vault.sol#357) is too similar to Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool).token1AfterSwap (contracts/Vault.sol#357)
+Variable Vault.performOptimalSwap(uint256,uint256,uint256,uint256).token0AfterSwap (contracts/Vault.sol#297) is too similar to Vault.performOptimalSwap(uint256,uint256,uint256,uint256).token1AfterSwap (contracts/Vault.sol#297)
+Variable Vault.emergencyBurnAndCollect(address).token0Balance (contracts/Vault.sol#678) is too similar to Vault.emergencyBurnAndCollect(address).token1Balance (contracts/Vault.sol#679)
+Variable Vault.getPositionAmounts(int24,int24).tokensOwed0 (contracts/Vault.sol#760) is too similar to Vault.getPositionAmounts(int24,int24).tokensOwed1 (contracts/Vault.sol#761)
+Variable Vault.deposit(uint256,uint256,uint256,uint256,address).totalAmount0 (contracts/Vault.sol#156) is too similar to Vault.deposit(uint256,uint256,uint256,uint256,address).totalAmount1 (contracts/Vault.sol#156)
+Variable Vault.withdraw(uint256,uint256,uint256,address).unusedAmount0 (contracts/Vault.sol#227) is too similar to Vault.withdraw(uint256,uint256,uint256,address).unusedAmount1 (contracts/Vault.sol#228)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#variable-names-are-too-similar
+
+FixedPoint96.slitherConstructorConstantVariables() (node_modules/@uniswap/v3-core/contracts/libraries/FixedPoint96.sol#7-10) uses literals with too many digits:
+        - Q96 = 0x1000000000000000000000000 (node_modules/@uniswap/v3-core/contracts/libraries/FixedPoint96.sol#9)
+TickMath.getSqrtRatioAtTick(int24) (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#23-54) uses literals with too many digits:
+        - ratio = 0x100000000000000000000000000000000 (node_modules/@uniswap/v3-core/contracts/libraries/TickMath.sol#27)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#too-many-digits
+
+createVault(address,address,uint256,uint256,uint256) should be declared external:
+        - Factory.createVault(address,address,uint256,uint256,uint256) (contracts/Factory.sol#21-44)
+updateManager(address,address) should be declared external:
+        - Factory.updateManager(address,address) (contracts/Factory.sol#46-67)
+setRouter(address) should be declared external:
+        - Factory.setRouter(address) (contracts/Factory.sol#69-75)
+mintOptimalLiquidity(int24,int24,uint256,uint256,bool) should be declared external:
+        - Vault.mintOptimalLiquidity(int24,int24,uint256,uint256,bool) (contracts/Vault.sol#341-389)
+compoundFee() should be declared external:
+        - Vault.compoundFee() (contracts/Vault.sol#404-409)
+burnAndCollect(int24,int24,uint128) should be declared external:
+        - Vault.burnAndCollect(int24,int24,uint128) (contracts/Vault.sol#439-455)
+setBaseTicks(int24,int24) should be declared external:
+        - Vault.setBaseTicks(int24,int24) (contracts/Vault.sol#616-622)
+setLimitTicks(int24,int24) should be declared external:
+        - Vault.setLimitTicks(int24,int24) (contracts/Vault.sol#625-631)
+uniswapV3SwapCallback(int256,int256,bytes) should be declared external:
+        - Vault.uniswapV3SwapCallback(int256,int256,bytes) (contracts/Vault.sol#917-928)
+name() should be declared external:
+        - ERC20.name() (contracts/interfaces/ERC20.sol#64-66)
+symbol() should be declared external:
+        - ERC20.symbol() (contracts/interfaces/ERC20.sol#72-74)
+decimals() should be declared external:
+        - ERC20.decimals() (contracts/interfaces/ERC20.sol#89-91)
+balanceOf(address) should be declared external:
+        - ERC20.balanceOf(address) (contracts/interfaces/ERC20.sol#103-105)
+transfer(address,uint256) should be declared external:
+        - ERC20.transfer(address,uint256) (contracts/interfaces/ERC20.sol#115-118)
+allowance(address,address) should be declared external:
+        - ERC20.allowance(address,address) (contracts/interfaces/ERC20.sol#123-125)
+approve(address,uint256) should be declared external:
+        - ERC20.approve(address,uint256) (contracts/interfaces/ERC20.sol#134-137)
+transferFrom(address,address,uint256) should be declared external:
+        - ERC20.transferFrom(address,address,uint256) (contracts/interfaces/ERC20.sol#152-156)
+increaseAllowance(address,uint256) should be declared external:
+        - ERC20.increaseAllowance(address,uint256) (contracts/interfaces/ERC20.sol#170-173)
+decreaseAllowance(address,uint256) should be declared external:
+        - ERC20.decreaseAllowance(address,uint256) (contracts/interfaces/ERC20.sol#189-192)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external
+contracts/Factory.sol analyzed (29 contracts with 75 detectors), 259 result(s) found

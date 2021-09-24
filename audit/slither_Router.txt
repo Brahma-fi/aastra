@@ -1,0 +1,105 @@
+Router.newLiquidity(IVault,int24,int24,int24,int24,uint8,bool) (contracts/Router.sol#66-96) ignores return value by vault.burnAndCollect(oldTickLower,oldTickUpper,oldLiquidity) (contracts/Router.sol#82)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unused-return
+
+Reentrancy in Router.newBaseLiquidity(int24,int24,uint8,bool) (contracts/Router.sol#23-42):
+        External calls:
+        - newLiquidity(vault,_baseLower,_baseUpper,vault.baseLower(),vault.baseUpper(),_percentage,swapEnabled) (contracts/Router.sol#30-38)
+                - vault.poke(oldTickLower,oldTickUpper) (contracts/Router.sol#76)
+                - vault.burnAndCollect(oldTickLower,oldTickUpper,oldLiquidity) (contracts/Router.sol#82)
+                - vault.mintOptimalLiquidity(tickLower,tickUpper,balance0.mul(percentage).div(100),balance1.mul(percentage).div(100),swapEnabled) (contracts/Router.sol#88-94)
+        - vault.setBaseTicks(_baseLower,_baseUpper) (contracts/Router.sol#39)
+        Event emitted after the call(s):
+        - RebalanceBaseLiqudity(address(vault),_baseLower,_baseUpper,_percentage) (contracts/Router.sol#41)
+Reentrancy in Router.newLimitLiquidity(int24,int24,uint8,bool) (contracts/Router.sol#45-64):
+        External calls:
+        - newLiquidity(vault,_limitLower,_limitUpper,vault.limitLower(),vault.limitUpper(),_percentage,swapEnabled) (contracts/Router.sol#52-60)
+                - vault.poke(oldTickLower,oldTickUpper) (contracts/Router.sol#76)
+                - vault.burnAndCollect(oldTickLower,oldTickUpper,oldLiquidity) (contracts/Router.sol#82)
+                - vault.mintOptimalLiquidity(tickLower,tickUpper,balance0.mul(percentage).div(100),balance1.mul(percentage).div(100),swapEnabled) (contracts/Router.sol#88-94)
+        - vault.setLimitTicks(_limitLower,_limitUpper) (contracts/Router.sol#61)
+        Event emitted after the call(s):
+        - RebalanceLimitLiqudity(address(vault),_limitLower,_limitUpper,_percentage) (contracts/Router.sol#63)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+
+Different versions of Solidity is used:
+        - Version used: ['>=0.5.0', '>=0.6.0', '>=0.7.5']
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolEvents.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolImmutables.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#2)
+        - >=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#2)
+        - >=0.7.5 (contracts/Router.sol#1)
+        - >=0.6.0 (contracts/interfaces/IERC20.sol#3)
+        - >=0.7.5 (contracts/interfaces/IERC20Metadata.sol#3)
+        - >=0.7.5 (contracts/interfaces/IFactory.sol#1)
+        - >=0.7.5 (contracts/interfaces/IRouter.sol#1)
+        - >=0.7.5 (contracts/interfaces/IVault.sol#1)
+        - >=0.6.0 (contracts/interfaces/Math.sol#3)
+        - >=0.6.0 (contracts/interfaces/ReentrancyGuard.sol#3)
+        - >=0.6.0 (contracts/interfaces/SafeMath.sol#3)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#different-pragma-directives-are-used
+
+Math.average(uint256,uint256) (contracts/interfaces/Math.sol#27-30) is never used and should be removed
+Math.max(uint256,uint256) (contracts/interfaces/Math.sol#12-14) is never used and should be removed
+Math.min(uint256,uint256) (contracts/interfaces/Math.sol#19-21) is never used and should be removed
+SafeMath.add(uint256,uint256) (contracts/interfaces/SafeMath.sol#85-89) is never used and should be removed
+SafeMath.div(uint256,uint256,string) (contracts/interfaces/SafeMath.sol#190-193) is never used and should be removed
+SafeMath.mod(uint256,uint256) (contracts/interfaces/SafeMath.sol#152-155) is never used and should be removed
+SafeMath.mod(uint256,uint256,string) (contracts/interfaces/SafeMath.sol#210-213) is never used and should be removed
+SafeMath.sub(uint256,uint256) (contracts/interfaces/SafeMath.sol#101-104) is never used and should be removed
+SafeMath.sub(uint256,uint256,string) (contracts/interfaces/SafeMath.sol#170-173) is never used and should be removed
+SafeMath.tryAdd(uint256,uint256) (contracts/interfaces/SafeMath.sol#24-28) is never used and should be removed
+SafeMath.tryDiv(uint256,uint256) (contracts/interfaces/SafeMath.sol#60-63) is never used and should be removed
+SafeMath.tryMod(uint256,uint256) (contracts/interfaces/SafeMath.sol#70-73) is never used and should be removed
+SafeMath.tryMul(uint256,uint256) (contracts/interfaces/SafeMath.sol#45-53) is never used and should be removed
+SafeMath.trySub(uint256,uint256) (contracts/interfaces/SafeMath.sol#35-38) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code
+
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/IUniswapV3Pool.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolEvents.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolImmutables.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#2) allows old versions
+Pragma version>=0.5.0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#2) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/IERC20.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/Math.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/ReentrancyGuard.sol#3) allows old versions
+Pragma version>=0.6.0 (contracts/interfaces/SafeMath.sol#3) allows old versions
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+Parameter Router.newBaseLiquidity(int24,int24,uint8,bool)._baseLower (contracts/Router.sol#24) is not in mixedCase
+Parameter Router.newBaseLiquidity(int24,int24,uint8,bool)._baseUpper (contracts/Router.sol#25) is not in mixedCase
+Parameter Router.newBaseLiquidity(int24,int24,uint8,bool)._percentage (contracts/Router.sol#26) is not in mixedCase
+Parameter Router.newLimitLiquidity(int24,int24,uint8,bool)._limitLower (contracts/Router.sol#46) is not in mixedCase
+Parameter Router.newLimitLiquidity(int24,int24,uint8,bool)._limitUpper (contracts/Router.sol#47) is not in mixedCase
+Parameter Router.newLimitLiquidity(int24,int24,uint8,bool)._percentage (contracts/Router.sol#48) is not in mixedCase
+Parameter Router.getBaseAmounts(address)._vault (contracts/Router.sol#99) is not in mixedCase
+Parameter Router.getLimitAmounts(address)._vault (contracts/Router.sol#122) is not in mixedCase
+Parameter Router.getBaseTicks(address)._vault (contracts/Router.sol#145) is not in mixedCase
+Parameter Router.getLimitTicks(address)._vault (contracts/Router.sol#156) is not in mixedCase
+Parameter Router.compoundFee(address)._vault (contracts/Router.sol#167) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+
+Variable IUniswapV3PoolActions.collect(address,int24,int24,uint128,uint128).amount0Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#47) is too similar to IUniswapV3PoolOwnerActions.collectProtocol(address,uint128,uint128).amount1Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#21)
+Variable IUniswapV3PoolOwnerActions.collectProtocol(address,uint128,uint128).amount0Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#20) is too similar to IUniswapV3PoolOwnerActions.collectProtocol(address,uint128,uint128).amount1Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#21)
+Variable IUniswapV3PoolActions.collect(address,int24,int24,uint128,uint128).amount0Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#47) is too similar to IUniswapV3PoolActions.collect(address,int24,int24,uint128,uint128).amount1Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#48)
+Variable IUniswapV3PoolOwnerActions.collectProtocol(address,uint128,uint128).amount0Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#20) is too similar to IUniswapV3PoolActions.collect(address,int24,int24,uint128,uint128).amount1Requested (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolActions.sol#48)
+Variable IUniswapV3PoolState.positions(bytes32).feeGrowthInside0LastX128 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#93) is too similar to IUniswapV3PoolState.positions(bytes32).feeGrowthInside1LastX128 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#94)
+Variable IUniswapV3PoolState.ticks(int24).feeGrowthOutside0X128 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#70) is too similar to IUniswapV3PoolState.ticks(int24).feeGrowthOutside1X128 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#71)
+Variable IUniswapV3PoolOwnerActions.setFeeProtocol(uint8,uint8).feeProtocol0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#10) is too similar to IUniswapV3PoolOwnerActions.setFeeProtocol(uint8,uint8).feeProtocol1 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolOwnerActions.sol#10)
+Variable IUniswapV3PoolState.positions(bytes32).tokensOwed0 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#95) is too similar to IUniswapV3PoolState.positions(bytes32).tokensOwed1 (node_modules/@uniswap/v3-core/contracts/interfaces/pool/IUniswapV3PoolState.sol#96)
+Variable IVault.deposit(uint256,uint256,uint256,uint256,address).amount0Desired (contracts/interfaces/IVault.sol#268) is too similar to IVault.deposit(uint256,uint256,uint256,uint256,address).amount1Desired (contracts/interfaces/IVault.sol#269)
+Variable IVault.burnAndCollect(int24,int24,uint128).feesToVault0 (contracts/interfaces/IVault.sol#177) is too similar to IVault.burnAndCollect(int24,int24,uint128).feesToVault1 (contracts/interfaces/IVault.sol#178)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#variable-names-are-too-similar
+
+getBaseAmounts(address) should be declared external:
+        - Router.getBaseAmounts(address) (contracts/Router.sol#99-119)
+getLimitAmounts(address) should be declared external:
+        - Router.getLimitAmounts(address) (contracts/Router.sol#122-142)
+compoundFee(address) should be declared external:
+        - Router.compoundFee(address) (contracts/Router.sol#167-170)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#public-function-that-could-be-declared-external
+contracts/Router.sol analyzed (16 contracts with 75 detectors), 53 result(s) found

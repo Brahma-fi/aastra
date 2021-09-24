@@ -154,20 +154,28 @@ contract Vault is
         );
         {
             (uint256 totalAmount0, uint256 totalAmount1) = getTotalAmounts();
-
-            uint256 baseMintAmount0 = amount0.mul(baseAmount0).div(
-                totalAmount0
-            );
-            uint256 baseMintAmount1 = amount0.mul(baseAmount1).div(
-                totalAmount0
-            );
-
-            uint256 limitMintAmount0 = amount0.mul(limitAmount0).div(
-                totalAmount0
-            );
-            uint256 limitMintAmount1 = amount1.mul(limitAmount1).div(
-                totalAmount1
-            );
+            
+            uint256 baseMintAmount0; 
+            uint256 baseMintAmount1 ;
+            uint256 limitMintAmount0;
+            uint256 limitMintAmount1 ;
+            
+            if (totalAmount0>0){
+                baseMintAmount0 = amount0.mul(baseAmount0).div(
+                    totalAmount0
+                );
+                limitMintAmount0 = amount0.mul(limitAmount0).div(
+                    totalAmount0
+                );
+            }
+            if (totalAmount1>0){
+                baseMintAmount1 = amount1.mul(baseAmount1).div(
+                    totalAmount1
+                );
+                limitMintAmount1 = amount1.mul(limitAmount1).div(
+                    totalAmount1
+                );
+            }
             // Mint tokens
             if (baseMintAmount0 > 0 || baseMintAmount1 > 0) {
                 uint128 baseLiquidity = _liquidityForAmounts(
@@ -287,6 +295,16 @@ contract Vault is
         uint256 amount0,
         uint256 amount1
     ) internal returns (uint256 token0AfterSwap, uint256 token1AfterSwap) {
+
+        bool isToken0Excess;
+        uint256 amountIn;
+        uint256 amountOut;
+
+        if (actualAmount1==0 || actualAmount0 == 0) {
+            isToken0Excess = actualAmount0==0;
+            amountIn = isToken0Excess? amount0: amount1;
+        }
+        else {
         // Round off the factors to 18 decimal places.
         uint256 factor = 10 **
             (uint256(18).sub(token1.decimals()).add(token0.decimals()));
@@ -297,14 +315,13 @@ contract Vault is
         ) >> (96 * 2);
 
         uint256 token0Converted = ratio.mulDiv(amount0, factor);
-        bool isToken0Excess = amount1 < token0Converted;
+        isToken0Excess = amount1 < token0Converted;
 
         uint256 excessAmount = isToken0Excess ? token0Converted.sub(amount1).mulDiv(factor, ratio) : amount1.sub(token0Converted);
-        uint256 amountOut;
-        uint256 amountIn = isToken0Excess
+        amountIn = isToken0Excess
             ? excessAmount.mulDiv(ratio, price.add(ratio))
             : excessAmount.mulDiv(price, price.add(ratio));
-
+        }
         if (amountIn > 0) {
             amountOut = swapTokensFromPool(isToken0Excess, amountIn);
         }
@@ -316,6 +333,8 @@ contract Vault is
         token1AfterSwap = isToken0Excess
             ? amount1.add(amountOut)
             : amount1.sub(amountIn);
+
+        
     }
 
     /// @inheritdoc IVault
@@ -631,32 +650,29 @@ contract Vault is
             (uint128 liquidityBase, , , , ) = position(baseLower, baseUpper);
             if (liquidityBase > 0) {
                 pool.burn(baseLower, baseUpper, liquidityBase);
-                pool.collect(
-                    to,
-                    baseLower,
-                    baseUpper,
-                    type(uint128).max,
-                    type(uint128).max
-                );
             }
-
+            pool.collect(
+                to,
+                baseLower,
+                baseUpper,
+                type(uint128).max,
+                type(uint128).max
+            );
         }
 
         if (limitLower < limitUpper) {
             (uint128 liquidityLimit, , , , ) = position(limitLower, limitUpper);
             if (liquidityLimit > 0) {
                 pool.burn(limitLower, limitUpper, liquidityLimit);
-
-                pool.collect(
-                    to,
-                    limitLower,
-                    limitUpper,
-                    type(uint128).max,
-                    type(uint128).max
-                );
             }
 
-
+            pool.collect(
+                to,
+                limitLower,
+                limitUpper,
+                type(uint128).max,
+                type(uint128).max
+            );
         }
 
         uint256 token0Balance = getBalance0();
@@ -777,6 +793,7 @@ contract Vault is
                 accruedStrategyFees1
             );
     }
+
 
     /// @inheritdoc IVault
     function freezeStrategy(bool value) external override onlyGovernance {
