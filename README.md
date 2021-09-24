@@ -26,5 +26,7 @@ In order to deploy this code to a local testnet, you should clone the repository
 
 ## Current Deployment
 Factory: [0xBAD59D2BA9A532242F1287DeaBc4227E8150D074](https://etherscan.io/address/0xBAD59D2BA9A532242F1287DeaBc4227E8150D074)
+
 Router: [0x34511BE0a5eB24183B077682cBec5c7a9C9c5ADb](https://etherscan.io/address/0x34511BE0a5eB24183B077682cBec5c7a9C9c5ADb)
+
 ETH-PUT-Vault: [0xc10d2E42dE16719523aAA9277d1b9290aA6c3Ad5](https://etherscan.io/address/0xc10d2E42dE16719523aAA9277d1b9290aA6c3Ad5)
