@@ -13,7 +13,7 @@ Aastra is built for
 
 ## Community
 [![Discord](https://img.shields.io/discord/413890591840272394.svg?color=768AD4&label=discord&logo=https%3A%2F%2Fdiscordapp.com%2Fassets%2F8c9701b98ad4372b58f13fd9f65f966e.svg)](https://discord.gg/kdM8myJv)
-[![Twitter Follow](https://img.shields.io/twitter/follow/synthetix_io.svg?label=synthetix_io&style=social)](https://twitter.com/Brahmafi)
+[Twitter Follow](https://twitter.com/Brahmafi)
 
 ## Repo Guide
 This repository contains the core smart contracts for the Aastra Vaults.
