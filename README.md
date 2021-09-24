@@ -8,12 +8,13 @@ Aastra is built for
 
 
 ## Dapp
-- [brahma.fi](https://www.brahma.fi/)
+[Brahma.fi](https://www.brahma.fi/)
 
 
 ## Community
 [![Discord](https://img.shields.io/discord/413890591840272394.svg?color=768AD4&label=discord&logo=https%3A%2F%2Fdiscordapp.com%2Fassets%2F8c9701b98ad4372b58f13fd9f65f966e.svg)](https://discord.gg/kdM8myJv)
-[Twitter Follow](https://twitter.com/Brahmafi)
+
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/Brahmafi.svg?style=social&label=Follow%20Brahmafi)](https://twitter.com/Brahmafi)
 
 ## Repo Guide
 This repository contains the core smart contracts for the Aastra Vaults.
