@@ -17,12 +17,12 @@ Aastra is built for
 
 ## Repo Guide
 This repository contains the core smart contracts for the Aastra Vaults.
-In order to deploy this code to a local testnet, you should clone the repository.
-Compiling Contracts `npx hardhat compile`
-Testing Contracts `npx hardhat test`
-Generating Coverage Report `npx hardhat coverage --testfiles "test/tests.js" --solcoverjs ./solcover.js`
-Deploying Contracts `npx hardhat run scripts/deploy.js`
-Generating Docs `npx solidity-docgen -i contracts/interfaces -o docs -t docs --solc-module solc-0.7.5`
+In order to deploy this code to a local testnet, you should clone the repository. 
+- Compiling Contracts `npx hardhat compile` 
+- Testing Contracts `npx hardhat test` 
+- Generating Coverage Report `npx hardhat coverage --testfiles "test/tests.js" --solcoverjs ./solcover.js` 
+- Deploying Contracts `npx hardhat run scripts/deploy.js`
+- Generating Docs `npx solidity-docgen -i contracts/interfaces -o docs -t docs --solc-module solc-0.7.5`
 
 ## Current Deployment
 Factory: [0xBAD59D2BA9A532242F1287DeaBc4227E8150D074](https://etherscan.io/address/0xBAD59D2BA9A532242F1287DeaBc4227E8150D074)
