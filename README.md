@@ -1,7 +1,7 @@
 [![MythXBadge](https://badgen.net/https/api.mythx.io/v1/projects/c28437af-c149-4c07-9783-4358782329ed/badge/data?cache=300&icon=https://raw.githubusercontent.com/ConsenSys/mythx-github-badge/main/logo_white.svg)](https://docs.mythx.io/dashboard/github-badges)
 
 ## Introduction
-Brahma creates and manages a host of novel DeFi components and strategies by abstracting complexity and making DeFi accessible to the masses. Brahma's research-backed, experimental approach strives to create an "Investverse" starting with generating a sustained yield on top of your crypto assets. We unlock new portals for liquidity by paving way for autonomous and algorithm-led architectures. Our first product is Aastra. Aastra runs strategies to earn yield using your idle stables. All instruments on Aastra fuse structured strategies with degeneracy, to come up with innovative ways to generate sustainable yields.
+Brahma aims to simplify the interaction with DeFi primitives through easy to invest vaults, which leverage composability with multiple protocols to deliver superior risk-adjusted yield to users.Brahma provides an alternative to inflationary returns via liquidity mining and discourages mercenary capital ⚛️. We unlock new portals for liquidity by paving way for autonomous and algorithm-led architectures. Our first product is Aastra. Aastra runs strategies to earn yield using your idle stables. All instruments on Aastra fuse structured strategies with degeneracy, to come up with innovative ways to generate sustainable yields.
 Aastra is built for
 - Users seeking to generate yield and
 - Liquidity providers use their assets more efficiently.
