@@ -1,0 +1,6 @@
+projectKey=aastra
+serverUrl=https://sonar.cicd.brahma.fi
+serverVersion=10.0.0.68432
+dashboardUrl=https://sonar.cicd.brahma.fi/dashboard?id=aastra
+ceTaskId=AYdrRtE1vbECL1daWnLh
+ceTaskUrl=https://sonar.cicd.brahma.fi/api/ce/task?id=AYdrRtE1vbECL1daWnLh
